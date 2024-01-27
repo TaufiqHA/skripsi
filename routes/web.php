@@ -1,18 +1,36 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RedirectController;
+use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\JudulController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+Route::middleware(['guest'])->group(function () {
+    Route::get('/', [AuthController::class, 'index'])->name('login');
+    Route::post('/', [AuthController::class, 'doLogin'])->name('doLogin');
+});
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware(['auth', 'checkrole:1,2,3,4,5'])->group(function () {
+    Route::get('redirect', [RedirectController::class, 'check'])->name('redirect');
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+});
+
+Route::middleware(['auth', 'checkrole:1'])->group(function () {
+    Route::get('mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa.dashboard');
+    Route::get('judul', [JudulController::class, 'index'])->name('judul.index');
+    Route::post('judul', [JudulController::class, 'addJudul'])->name('judul.add');
+    Route::get('mahasiswa/data/{mahasiswa} ', [MahasiswaController::class, 'showData'])->name('mahasiswa.data');
+    Route::put('mahasiswa/data/{mahasiswa} ', [MahasiswaController::class, 'updateData'])->name('mahasiswa.updateData');
+});
+
+Route::middleware(['auth','checkrole:2'])->group(function () {
+    Route::get('dosen', [DosenController::class, 'index'])->name('dosen.dashboard');
+});
+
+Route::middleware(['auth', 'checkrole:5'])->group(function () {
+    Route::get('admin', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('user/create', [UserController::class, 'create'])->name('user.create');
 });
