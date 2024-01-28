@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Role;
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -20,7 +23,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.addUser', ['title' => 'Tambah User']);
+        $role = Role::all();
+        return view('admin.addUser', ['title' => 'Tambah User', 'role' => $role]);
     }
 
     /**
@@ -28,7 +32,66 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'username' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+            'role_id' => 'required',
+        ]);
+
+        if($validator->fails())
+        {
+            return back()->withErrors($validator);
+        }
+
+        $validated = $validator->validate();
+
+        User::create($validated);
+
+        $latest = User::latest()->first();
+
+        if($latest->role_id === 1) {
+            Mahasiswa::create([
+                'user_id' => $latest->id,
+                'statusTA' => 'Belum mengajukan'
+            ]);
+
+            return back()->with([
+                'success' => 'Mahasiswa berhasil ditambahkan'
+            ]);
+        } else if($latest->role_id === 2) {
+            Dosen::create([
+                'user_id' => $latest->id
+            ]);
+
+            return back()->with([
+                'success' => 'Dosen berhasil ditambahkan'
+            ]);
+        } else  if($latest->role_id === 3) {
+            Kajur::create([
+                'user_id' => $latest->id
+            ]);
+
+            return back()->with([
+                'success' => 'Kajur berhasil ditambahkan'
+            ]);
+        } else if($latest->role_id === 4) {
+            Sekjur::create([
+                'user_id' => $latest->id
+            ]);
+
+            return back()->with([
+                'success' => 'Sekjur berhasil ditambahkan'
+            ]);
+        } else {
+            Admin::create([
+                'user_id' => $latest->id
+            ]);
+
+            return back()->with([
+                'success' => 'Admin berhasil ditambahkan'
+            ]);
+        }
     }
 
     /**

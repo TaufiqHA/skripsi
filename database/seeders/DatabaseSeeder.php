@@ -12,11 +12,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        Role::create([
+            'role_name' => 'Mahasiswa',
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        Role::create([
+            'role_name' => 'Dosen',
+        ]);
+
+        Role::create([
+            'role_name' => 'Kajur',
+        ]);
+
+        Role::create([
+            'role_name' => 'Sekjur',
+        ]);
+
+        Role::create([
+            'role_name' => 'Admin',
+        ]);
     }
 }

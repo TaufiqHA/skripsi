@@ -2,6 +2,40 @@
 
 @section('container')
 	<div class="w-full h-full" >
+		@if(session()->get('success'))
+			<div id="alert-3" class="flex items-center p-4 mb-4 text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+			  <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+			    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+			  </svg>
+			  <span class="sr-only">Info</span>
+			  <div class="ms-3 text-sm font-medium">
+			    {{ session()->get('success') }}
+			  </div>
+			  <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-3" aria-label="Close">
+			    <span class="sr-only">Close</span>
+			    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+			      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+			    </svg>
+			  </button>
+			</div>
+		@endif
+		@if($errors->any())
+			<div id="alert-2" class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+			  <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+			    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+			  </svg>
+			  <span class="sr-only">Info</span>
+			  <div class="ms-3 text-sm font-medium">
+			    {{ $errors->first() }}
+			  </div>
+			  <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-2" aria-label="Close">
+			    <span class="sr-only">Close</span>
+			    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+			      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+			    </svg>
+			  </button>
+			</div>
+		@endif
 		<section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5 h-full overflow-y-auto">
 		    <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
 		        <!-- Start coding here -->
@@ -21,36 +55,12 @@
 		                    </form>
 		                </div>
 		                <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-		                    <button  id="defaultModalButton" data-modal-target="defaultModal" data-modal-toggle="defaultModal" type="button" class="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+		                    <button  id="defaultModalButton" data-modal-target="defaultModal" data-modal-toggle="defaultModal" type="button" class=" {{ $mahasiswa->judul->count() === 3 ? 'hidden' : '' }} flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
 		                        <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 		                            <path clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
 		                        </svg>
 		                        Tambah judul
 		                    </button>
-		                    <div class="flex items-center space-x-3 w-full md:w-auto">
-		                        <button id="actionsDropdownButton" data-dropdown-toggle="actionsDropdown" class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" type="button">
-		                            <svg class="-ml-1 mr-1.5 w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-		                                <path clip-rule="evenodd" fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-		                            </svg>
-		                            Actions
-		                        </button>
-		                        <div id="actionsDropdown" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-		                            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="actionsDropdownButton">
-		                                <li>
-		                                    <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Diterima</a>
-		                                </li>
-		                                <li>
-		                                    <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Ditolak</a>
-		                                </li>
-		                                <li>
-		                                    <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Diajukan</a>
-		                                </li>
-		                                <li>
-		                                    <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Semua</a>
-		                                </li>
-		                            </ul>
-		                        </div>
-		                    </div>
 		                </div>
 		            </div>
 		            <div>
@@ -104,17 +114,19 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form action=" {{ route('judul.add') }} " method="post" >
+            <form action=" {{ route('judul.add') }} " method="post" enctype="multipart/form-data" >
             	@csrf
             	<input type="hidden" name="mahasiswa_id" value=" {{ $mahasiswa->id }} ">
+            	<input type="hidden" name="status" value="Diajukan">
+            	<input type="hidden" name="tanggal_pengajuan" value=" {{ now() }} ">
                 <div class="grid gap-4 mb-4 sm:grid-cols-3">
                     <div>
                         <label for="nim" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIM</label>
-                        <input type="text" name="nim" id="nim" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="">
+                        <input type="text" name="nim" id="nim" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" value=" {{ $mahasiswa->nim }} " required="">
                     </div>
                     <div>
                         <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
-                        <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="type here" required="">
+                        <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="type here" value=" {{ $mahasiswa->nama }} " required="">
                     </div>
                     <div>
                         <label for="konsentrasi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Konsentrasi</label>
@@ -131,11 +143,9 @@
                     <div>
                         <label for="bentuk_data" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bentuk data</label>
                         <select id="bentuk_data" name="bentuk_data" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            <option selected="">Select category</option>
-                            <option value="TV">TV/Monitors</option>
-                            <option value="PC">PC</option>
-                            <option value="GA">Gaming/Console</option>
-                            <option value="PH">Phones</option>
+                            <option selected="">Select</option>
+                            <option value="Primer">Primer</option>
+                            <option value="Sekunder">Sekunder</option>
                         </select>
                     </div>
                     <div>
@@ -143,8 +153,8 @@
                         <input type="text" name="metode" id="metode" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="type here" required="">
                     </div>
                     <div>
-                        <label for="tempat " class="block mb-2 text-[0.8rem] font-medium text-gray-900 dark:text-white">Tempat pengumpulan data</label>
-                        <input type="text" name="tempat " id="tempat " class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="type here" required="">
+                        <label for="tempat" class="block mb-2 text-[0.8rem] font-medium text-gray-900 dark:text-white">Tempat pengumpulan data</label>
+                        <input type="text" name="tempat" id="tempat" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="type here" required="">
                     </div>
                     <div class="sm:col-span-2" >
 						<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="bukti">Bukti konsultasi</label>
@@ -153,8 +163,8 @@
                     <div class="sm:col-span-3" >
                     	<div class="grid gap-4 sm:grid-cols-4" >
                     		<div>
-		                        <label for="nama_dospem1" class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Nama calon dosen pembimbing 1</label>
-		                        <select id="nama_dospem1" name="nama_dospem1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+		                        <label for="nama_dosen1" class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Nama calon dosen pembimbing 1</label>
+		                        <select id="nama_dosen1" name="nama_dosen1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
 		                            <option selected="">Select category</option>
 		                            @foreach($dosen as $item)
 			                            <option value=" {{ $item->id }} "> {{ $item->nama }} </option>
@@ -162,8 +172,8 @@
 		                        </select>
 		                    </div>
 		                    <div>
-		                        <label for="nama_dospem2" class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Nama calon dosen pembimbing 2</label>
-		                        <select id="nama_dospem2" name="nama_dospem2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+		                        <label for="nama_dosen2" class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Nama calon dosen pembimbing 2</label>
+		                        <select id="nama_dosen2" name="nama_dosen2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
 		                            <option selected="">Select category</option>
 		                            @foreach($dosen as $item)
 			                            <option value=" {{ $item->id }} "> {{ $item->nama }} </option>
@@ -171,8 +181,8 @@
 		                        </select>
 		                    </div>
 		                    <div>
-		                        <label for="nama_dospem3" class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Nama calon dosen pembimbing 3</label>
-		                        <select id="nama_dospem3" name="nama_dospem3" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+		                        <label for="nama_dosen3" class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Nama calon dosen pembimbing 3</label>
+		                        <select id="nama_dosen3" name="nama_dosen3" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
 		                            <option selected="">Select category</option>
 		                            @foreach($dosen as $item)
 			                            <option value=" {{ $item->id }} "> {{ $item->nama }} </option>
@@ -180,8 +190,8 @@
 		                        </select>
 		                    </div>
 		                    <div>
-		                        <label for="nama_dospem4" class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Nama calon dosen pembimbing 4</label>
-		                        <select id="nama_dospem4" name="nama_dospem4" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+		                        <label for="nama_dosen4" class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Nama calon dosen pembimbing 4</label>
+		                        <select id="nama_dosen4" name="nama_dosen4" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
 		                            <option selected="">Select category</option>
 		                            @foreach($dosen as $item)
 			                            <option value=" {{ $item->id }} "> {{ $item->nama }} </option>

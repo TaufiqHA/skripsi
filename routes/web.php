@@ -33,4 +33,5 @@ Route::middleware(['auth','checkrole:2'])->group(function () {
 Route::middleware(['auth', 'checkrole:5'])->group(function () {
     Route::get('admin', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('user/create', [UserController::class, 'create'])->name('user.create');
+    Route::post('user/create', [UserController::class, 'store'])->name('user.addUser');
 });
