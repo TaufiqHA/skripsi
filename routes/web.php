@@ -7,6 +7,7 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\JudulController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\KajurController;
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/', [AuthController::class, 'index'])->name('login');
@@ -28,6 +29,12 @@ Route::middleware(['auth', 'checkrole:1'])->group(function () {
 
 Route::middleware(['auth','checkrole:2'])->group(function () {
     Route::get('dosen', [DosenController::class, 'index'])->name('dosen.dashboard');
+});
+
+Route::middleware(['auth', 'checkrole:3'])->group(function () {
+    Route::get('kajur', [KajurController::class, 'index'])->name('kajur.dashboard');
+    Route::get('kajur/judul', [KajurController::class, 'judul'])->name('kajur.judul');
+    Route::get('kajur/aprove/{judul}', [KajurController::class, 'aprove'])->name('kajur.aprove');
 });
 
 Route::middleware(['auth', 'checkrole:5'])->group(function () {
