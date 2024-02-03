@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Mahasiswa;
 use App\Models\Dosen;
 use App\Models\Judul;
+use App\Models\Room;
+use App\Models\Skripsi;
 use Illuminate\Support\Facades\Validator;
 
 class JudulController extends Controller
@@ -55,5 +57,44 @@ class JudulController extends Controller
         return back()->with([
             'success' => 'Judul berhasil diajukan'
         ]);
+    }
+
+    public function aproveJudul(Judul $judul, Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'judul_id' => 'required',
+            'dospem1_id' => 'required',
+            'dospem2_id' => 'required',
+            'tanggal_disetujui' => 'required'
+        ]);
+
+        if($validator->fails())
+        {
+            return back()->withErrors($validator);
+        }
+
+        $validated = $validator->validate();
+
+        Skripsi::create($validated);
+
+        Judul::where('id', $judul->id)->update(['status' => 'Diterima']);
+
+        Mahasiswa::where('id', $judul->mahasiswa->id)->update(['statusTA' => 'Diterima']);
+
+        Room::create(['mahasiswa_id' => $judul->mahasiswa->id, 'dosen_id' => $request->dospem1_id]);
+        Room::create(['mahasiswa_id' => $judul->mahasiswa->id, 'dosen_id' => $request->dospem2_id]);
+
+        $dosen1 = Dosen::find($request->dospem1_id);
+        $mahasiswa = $judul->mahasiswa->id;
+        $value = [$mahasiswa];
+        $dosen1->mahasiswa()->attach($value);
+
+        $dosen2 = Dosen::find($request->dospem2_id);
+        $mahasiswa = $judul->mahasiswa->id;
+        $value = [$mahasiswa];
+        $dosen2->mahasiswa2()->attach($value);
+
+        return redirect(route('kajur.judul'));
+
     }
 }

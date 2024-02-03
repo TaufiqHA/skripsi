@@ -48,6 +48,7 @@
 		                            <th scope="col" class="px-4 py-3">Nama</th>
 		                            <th scope="col" class="px-4 py-3">Judul</th>
 		                            <th scope="col" class="px-4 py-3">Tanggal Pengajuan</th>
+		                            <th scope="col" class="px-4 py-3">Status</th>
 		                            <th scope="col" class="px-4 py-3">
 		                                <span class="sr-only">Actions</span>
 		                            </th>
@@ -59,6 +60,7 @@
 			                            <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"> {{ $judul->mahasiswa->nama }} </th>
 			                            <td class="px-4 py-3 text-wrap "> {{ $judul->judul }} </td>
 			                            <td class="px-4 py-3"> {{ $judul->tanggal_pengajuan }} </td>
+			                            <td class="px-4 py-3"> {{ $judul->status }} </td>
 			                            <td class="px-4 py-3 flex items-center justify-end">
 			                            	@if($judul->status === 'Diajukan')
 			                            		<a href=" {{ route('kajur.aprove', ['judul' => $judul->id]) }} " class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100" type="button">
