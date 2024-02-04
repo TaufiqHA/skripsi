@@ -36,6 +36,7 @@ Route::middleware(['auth', 'checkrole:3'])->group(function () {
     Route::get('kajur/judul', [KajurController::class, 'judul'])->name('kajur.judul');
     Route::get('kajur/aprove/{judul}', [KajurController::class, 'aprove'])->name('kajur.aprove');
     Route::post('judul/aproved/{judul}', [JudulController::class, 'aproveJudul'])->name('judul.aprove');
+    Route::get('judul/tolak/{judul}', [JudulController::class, 'tolakJudul'])->name('judul.tolak');
 });
 
 Route::middleware(['auth', 'checkrole:5'])->group(function () {

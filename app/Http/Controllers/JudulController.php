@@ -17,7 +17,7 @@ class JudulController extends Controller
         $mahasiswa = Mahasiswa::where('user_id', auth()->user()->id)->first();
         $dosen = Dosen::all();
         $judul = Judul::where('mahasiswa_id', $mahasiswa->id)->get();
-        return view('judul.index', ['title' => 'Judul', 'mahasiswa' => $mahasiswa, 'dosen' => $dosen, 'judul' => $judul]);
+        return view('judul.index', ['title' => 'Judul', 'mahasiswa' => $mahasiswa, 'dosen' => $dosen, 'juduls' => $judul]);
     }
 
     public function addJudul(Request $request)
@@ -96,5 +96,22 @@ class JudulController extends Controller
 
         return redirect(route('kajur.judul'));
 
+    }
+
+    public function tolakJudul(Judul $judul, Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'alasan_penolakan' => 'required'
+        ]);
+
+        if($validator->fails())
+        {
+            return back()->withErrors($validator);
+        }
+
+        $validated = $validator->validate();
+
+        Judul::where('id', $judul->id)->update(['status' => 'Ditolak', 'tanggal_ditolak' => now(), 'alasan_penolakan' => $validated['alasan_penolakan']]);
+        return redirect(route('kajur.judul'));
     }
 }
