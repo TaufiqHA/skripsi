@@ -47,11 +47,11 @@
 	          </button>
 	          <a href="https://flowbite.com" class="flex items-center justify-between mr-4">
 	            <img
-	              src="https://flowbite.s3.amazonaws.com/logo.svg"
+	              src=" {{ asset('img/logo_sita.png') }} "
 	              class="mr-3 h-8"
-	              alt="Flowbite Logo"
+	              alt="Logo"
 	            />
-	            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
+	            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">SITA</span>
 	          </a>
 	          <form action="#" method="GET" class="hidden md:block md:pl-2">
 	            <label for="topbar-search" class="sr-only">Search</label>
@@ -750,7 +750,7 @@
 	      </div>
 	    </aside>
 
-	    <main class="p-4 md:ml-64 h-fit pt-20 bg-gray-900">
+	    <main class="p-4 md:ml-64 h-fit pt-20 dark:bg-gray-900">
 	      @yield('container')
 	    </main>
 	  </div>

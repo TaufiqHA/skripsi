@@ -30,4 +30,14 @@ class Dosen extends Model
     {
         return $this->belongsToMany(Mahasiswa::class, 'dosen_pembimbing2');
     }
+
+    public function bimbingan()
+    {
+        return $this->belongsTo(Bimbingan::class);
+    }
+
+    public function room()
+    {
+        return $this->hasMany(Room::class);
+    }
 }

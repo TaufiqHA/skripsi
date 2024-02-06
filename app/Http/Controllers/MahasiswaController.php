@@ -7,6 +7,7 @@ use App\Models\Mahasiswa;
 use App\Models\Fakultas;
 use App\Models\Jurusan;
 use App\Models\Dosen;
+use App\Models\Room;
 use Illuminate\Support\Facades\Validator;
 
 class MahasiswaController extends Controller
@@ -52,5 +53,10 @@ class MahasiswaController extends Controller
         return back()->with([
             'success' => 'berhasil update data'
         ]);
+    }
+
+    public function room(Room $room)
+    {
+        return view('mahasiswa.room', ['title' => 'Bimbingan', 'room' => $room]);
     }
 }

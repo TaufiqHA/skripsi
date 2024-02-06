@@ -22,4 +22,9 @@ class Mahasiswa extends Model
     {
         return $this->hasMany(Judul::class);
     }
+
+    public function room()
+    {
+        return $this->hasMany(Room::class);
+    }
 }

@@ -8,6 +8,9 @@ use App\Http\Controllers\JudulController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KajurController;
+use App\Http\Controllers\BimbinganController;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\DosenController;
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/', [AuthController::class, 'index'])->name('login');
@@ -25,10 +28,17 @@ Route::middleware(['auth', 'checkrole:1'])->group(function () {
     Route::post('judul', [JudulController::class, 'addJudul'])->name('judul.add');
     Route::get('mahasiswa/data/{mahasiswa} ', [MahasiswaController::class, 'showData'])->name('mahasiswa.data');
     Route::put('mahasiswa/data/{mahasiswa} ', [MahasiswaController::class, 'updateData'])->name('mahasiswa.updateData');
+    Route::get('bimbingan/room/{room}', [MahasiswaController::class, 'room'])->name('bimbingan.room');
+    Route::get('mahasiswa/bimbingan', [BimbinganController::class, 'index'])->name('mahasiswa.bimbingan');
+    Route::post('room/draft/{room}', [RoomController::class, 'uploadDraft'])->name('room.upload');
 });
 
 Route::middleware(['auth','checkrole:2'])->group(function () {
     Route::get('dosen', [DosenController::class, 'index'])->name('dosen.dashboard');
+    Route::get('dosen/bimbingan', [DosenController::class, 'bimbingan'])->name('dosen.bimbingan');
+    Route::get('dosen/room/{room}', [RoomController::class, 'dosen'])->name('dosen.room');
+    Route::get('room/draft/{room}', [RoomController::class, 'download'])->name('draft.download');
+    Route::put('room/revisi/{room}', [RoomController::class, 'revisi'])->name('revisi');
 });
 
 Route::middleware(['auth', 'checkrole:3'])->group(function () {

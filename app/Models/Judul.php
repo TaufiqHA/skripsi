@@ -44,4 +44,9 @@ class Judul extends Model
     {
         return $this->belongsTo(Dosen::class, 'nama_dosen4');
     }
+
+    public function bimbingan()
+    {
+        return $this->belongsTo(Bimbingan::class);
+    }
 }
