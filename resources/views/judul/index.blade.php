@@ -37,7 +37,7 @@
 			</div>
 		@endif
 		<section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5 h-full overflow-y-auto">
-		    <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
+		    <div class="mx-auto max-w-screen-xl lg:px-12">
 		        <!-- Start coding here -->
 		        <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
 		            <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
@@ -210,7 +210,7 @@
 @section('modal')
 <!-- Main modal -->
 <div id="defaultModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-hidden overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full ">
-    <div class="relative p-4 w-full max-w-4xl h-full md:h-auto ">
+    <div class="relative p-4 w-full max-w-5xl h-full md:h-auto ">
         <!-- Modal content -->
         <div class="relative h-[90vh] overflow-y-auto p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
             <!-- Modal header -->

@@ -59,4 +59,14 @@ class MahasiswaController extends Controller
     {
         return view('mahasiswa.room', ['title' => 'Bimbingan', 'room' => $room]);
     }
+
+    public function sempro()
+    {
+        return view('seminar.proposal', ['title' => 'Seminar Proposal']);
+    }
+
+    public function hasil()
+    {
+        return view('seminar.hasil', ['title' => 'Seminar Hasil']);
+    }
 }

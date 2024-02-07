@@ -66,4 +66,24 @@ class RoomController extends Controller
             'success' => 'revisi berhasil ditembahkan'
         ]);
     }
+
+    public function status(Room $room, Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'tanggal_persetujuan' => 'required',
+            'status' => 'required'
+        ]);
+
+        if($validator->fails())
+        {
+            return back()->withErrors($validator);
+        }
+
+        $validated = $validator->validate();
+
+        Room::where('id', $room->id)->update($validated);
+        return back()->with([
+            'success' => 'Judul Diterima'
+        ]);
+    }
 }

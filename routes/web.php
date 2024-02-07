@@ -31,6 +31,8 @@ Route::middleware(['auth', 'checkrole:1'])->group(function () {
     Route::get('bimbingan/room/{room}', [MahasiswaController::class, 'room'])->name('bimbingan.room');
     Route::get('mahasiswa/bimbingan', [BimbinganController::class, 'index'])->name('mahasiswa.bimbingan');
     Route::post('room/draft/{room}', [RoomController::class, 'uploadDraft'])->name('room.upload');
+    Route::get('mahasiswa/sempro', [MahasiswaController::class, 'sempro'])->name('seminar.proposal');
+    Route::get('mahasiswa/hasil', [MahasiswaController::class, 'hasil'])->name('seminar.hasil');
 });
 
 Route::middleware(['auth','checkrole:2'])->group(function () {
@@ -39,6 +41,7 @@ Route::middleware(['auth','checkrole:2'])->group(function () {
     Route::get('dosen/room/{room}', [RoomController::class, 'dosen'])->name('dosen.room');
     Route::get('room/draft/{room}', [RoomController::class, 'download'])->name('draft.download');
     Route::put('room/revisi/{room}', [RoomController::class, 'revisi'])->name('revisi');
+    Route::put('room/aproved/{room}', [RoomController::class, 'status'])->name('room.aprove');
 });
 
 Route::middleware(['auth', 'checkrole:3'])->group(function () {

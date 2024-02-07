@@ -8,9 +8,9 @@
 			        <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src=" {{ asset('img/user1.png') }} " alt="Bonnie image"/>
 			        <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white"> {{ $room->mahasiswa->nama }} </h5>
 			        <span class="text-sm text-gray-500 dark:text-gray-400"> {{ $room->status }} </span>
-			        <div class="flex mt-4 md:mt-6">
-			            <a href=" {{ route('dosen.room', ['room' => $room->id]) }} " class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Enter</a>
-			            <button data-modal-target="timeline-modal{{ $room->id }}" data-modal-toggle="timeline-modal{{ $room->id }}" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700 ms-3">Revisi</button>
+			        <div class="flex gap-3 mt-4 md:mt-6">
+			            <a href=" {{ route('dosen.room', ['room' => $room->id]) }} " class=" {{ $room->status === 'Disetujui' ? 'hidden' : '' }} inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Enter</a>
+			            <button data-modal-target="timeline-modal{{ $room->id }}" data-modal-toggle="timeline-modal{{ $room->id }}" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">Revisi</button>
 						<!-- Main modal -->
 						<div id="timeline-modal{{ $room->id }}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
 						    <div class="relative p-4 w-full max-w-md max-h-full">
