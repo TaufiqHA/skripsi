@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Judul;
 use App\Models\Kajur;
+use App\Models\Dosen;
 use Illuminate\Support\Facades\Validator;
 
 class KajurController extends Controller
@@ -54,6 +55,13 @@ class KajurController extends Controller
 
     public function distribusi()
     {
-        return view('kajur.distribusi', ['title' => 'Distribusi dosen']);
+        $dosens = Dosen::all();
+        return view('kajur.distribusi', ['title' => 'Distribusi dosen', 'dosens' => $dosens]);
+    }
+
+    public function distribusi2()
+    {
+        $dosens = Dosen::all();
+        return view('kajur.distribusi2', ['title' => 'Distribusi dosen', 'dosens' => $dosens]);
     }
 }

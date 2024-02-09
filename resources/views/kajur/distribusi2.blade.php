@@ -31,12 +31,12 @@
 		                        <div id="actionsDropdown" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
 		                            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="actionsDropdownButton">
 		                                <li>
-		                                    <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Pembimbing 1</a>
+		                                    <a href=" {{ route('kajur.distribusi') }} " class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Pembimbing 1</a>
 		                                </li>
 		                            </ul>
 		                            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="actionsDropdownButton">
 		                                <li>
-		                                    <a href=" {{ route('kajur.distribusi2') }} " class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Pembimbing 2</a>
+		                                    <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Pembimbing 2</a>
 		                                </li>
 		                            </ul>
 		                        </div>
@@ -47,7 +47,7 @@
 		                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 		                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 		                        <tr>
-		                            <th scope="col" class="px-4 py-3 capitalize">Pembimbing 1</th>
+		                            <th scope="col" class="px-4 py-3 capitalize">Pembimbing 2</th>
 		                            <th scope="col" class="px-4 py-3 capitalize">Mahasiswa bimbingan</th>
 		                            <th scope="col" class="px-4 py-3">
 		                                <span class="sr-only">Actions</span>
@@ -59,7 +59,7 @@
 		                    		<tr class="border-b dark:border-gray-700">
 			                            <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"> {{ $dosen->nama }} </th>
 			                            <td class="px-4 py-3">
-			                            	<span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300"> {{ $dosen->mahasiswa()->count() }} mahasiswa</span>
+			                            	<span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300"> {{ $dosen->mahasiswa2()->count() }} mahasiswa</span>
 			                            </td>
 			                            <td class="px-4 py-3 flex items-c0enter justify-end">
 			                                <button id="apple-imac-27-dropdown-button" data-dropdown-toggle="apple-imac-27-dropdown" class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-40 dark:hover:text-gray-100" type="button">
