@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Judul;
+use App\Models\Kajur;
+use Illuminate\Support\Facades\Validator;
 
 class KajurController extends Controller
 {
@@ -22,5 +24,36 @@ class KajurController extends Controller
     public function aprove(Judul $judul)
     {
         return view('kajur.aprove', ['title' => 'Tugas Akhir', 'judul' => $judul]); 
+    }
+
+    public function data(Kajur $kajur)
+    {
+        return view('kajur.data', ['title' => 'Data diri', 'kajur' => $kajur]);
+    }
+
+    public function update(Request $request, Kajur $kajur)
+    {
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required',
+            'nip' => 'required',
+        ]);
+
+        if($validator->fails())
+        {
+            return back()->withErrors($validator);
+        }
+
+        $validated = $validator->validate();
+
+        Kajur::where('id', $kajur->id)->update($validated);
+
+        return back()->with([
+            'success' => 'Data berhasil ditambahkan'
+        ]);
+    }
+
+    public function distribusi()
+    {
+        return view('kajur.distribusi', ['title' => 'Distribusi dosen']);
     }
 }

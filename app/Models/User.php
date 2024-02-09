@@ -54,4 +54,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Dosen::class);
     }
+
+    public function kajur()
+    {
+        return $this->hasOne(Kajur::class);
+    }
 }

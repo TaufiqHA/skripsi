@@ -42,6 +42,8 @@ Route::middleware(['auth','checkrole:2'])->group(function () {
     Route::get('room/draft/{room}', [RoomController::class, 'download'])->name('draft.download');
     Route::put('room/revisi/{room}', [RoomController::class, 'revisi'])->name('revisi');
     Route::put('room/aproved/{room}', [RoomController::class, 'status'])->name('room.aprove');
+    Route::get('dosen/data/{dosen}', [DosenController::class, 'data'])->name('dosen.data');
+    Route::put('dosen/data/update/{dosen}', [DosenController::class, 'update'])->name('dosen.update');
 });
 
 Route::middleware(['auth', 'checkrole:3'])->group(function () {
@@ -50,6 +52,9 @@ Route::middleware(['auth', 'checkrole:3'])->group(function () {
     Route::get('kajur/aprove/{judul}', [KajurController::class, 'aprove'])->name('kajur.aprove');
     Route::post('judul/aproved/{judul}', [JudulController::class, 'aproveJudul'])->name('judul.aprove');
     Route::get('judul/tolak/{judul}', [JudulController::class, 'tolakJudul'])->name('judul.tolak');
+    Route::get('kajur/data/{kajur}', [KajurController::class, 'data'])->name('kajur.data');
+    Route::put('kajur/data/update/{kajur}', [KajurController::class, 'update'])->name('kajur.update');
+    Route::get('kajur/distribusi', [KajurController::class, 'distribusi'])->name('kajur.distribusi');
 });
 
 Route::middleware(['auth', 'checkrole:5'])->group(function () {
