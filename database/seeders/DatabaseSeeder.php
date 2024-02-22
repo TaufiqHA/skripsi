@@ -4,7 +4,15 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
 use App\Models\Role;
+use App\Models\Mahasiswa;
+use App\Models\Dosen;
+use App\Models\Kajur;
+use App\Models\Sekjur;
+use App\Models\Admin;
+use App\Models\Jurusan;
+use App\Models\Fakultas;
 
 class DatabaseSeeder extends Seeder
 {
