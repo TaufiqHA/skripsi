@@ -3,7 +3,7 @@
 @section('container')
 	<div class="w-full h-full flex flex-col gap-5 md:flex-row " >
 		@foreach($rooms as $key => $room)
-			<div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+			<div class="w-full max-w-full md:max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 			    <div class="flex flex-col items-center py-10">
 			        <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src=" {{ asset('img/user1.png') }} " alt="Bonnie image"/>
 			        <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white"> {{ $room->dosen->nama }} </h5>

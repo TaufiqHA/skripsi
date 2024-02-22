@@ -17,7 +17,7 @@ class KajurController extends Controller
 
     public function judul()
     {
-        $judul = Judul::all();
+        $judul = Judul::paginate(5);
         // dd($judul);
         return view('kajur.judul', ['title' => 'Tugas Akhir', 'juduls' => $judul]);
     }
@@ -63,5 +63,23 @@ class KajurController extends Controller
     {
         $dosens = Dosen::all();
         return view('kajur.distribusi2', ['title' => 'Distribusi dosen', 'dosens' => $dosens]);
+    }
+
+    public function search(Request $request)
+    {   
+        if($request->has('search'))
+        {
+            $juduls = Judul::where('judul', 'LIKE', '%'.$request->search.'%')->orWhereHas('mahasiswa', function ($query) use ($request) {
+            $query->where('nama', 'like', "%$request->search%");
+            })->orWhere('status', 'LIKE', '%'.$request->search.'%')->paginate(5);
+        } else {
+            $juduls = Judul::paginate(5);
+        }
+        return view('kajur.judul', ['title' => 'Tugas akhir', 'juduls' => $juduls]);
+    }
+
+    public function statusFilter(Request $request)
+    {
+        $juduls = Judul::where('status', 'LIKE', "%$request->search%")->get();
     }
 }

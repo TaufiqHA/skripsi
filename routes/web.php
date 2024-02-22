@@ -56,6 +56,8 @@ Route::middleware(['auth', 'checkrole:3'])->group(function () {
     Route::put('kajur/data/update/{kajur}', [KajurController::class, 'update'])->name('kajur.update');
     Route::get('kajur/distribusi', [KajurController::class, 'distribusi'])->name('kajur.distribusi');
     Route::get('kajur/distribusi2', [KajurController::class, 'distribusi2'])->name('kajur.distribusi2');
+    Route::get('kajur/judul/search', [KajurController::class, 'search'])->name('judul.search');
+    Route::get('kajur/judul/status', [KajurController::class, 'statusFilter'])->name('judul.statusFilter');
 });
 
 Route::middleware(['auth', 'checkrole:5'])->group(function () {
