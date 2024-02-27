@@ -11,6 +11,7 @@ use App\Models\Sekjur;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\File;
 
 class UserController extends Controller
 {
@@ -119,7 +120,23 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'username' => 'required',
+            'email' => 'email',
+            'avatar' => [
+                'nullable',
+                File::types(['jpg', 'jpeg', 'png'])
+            ]
+        ]);
+
+        if($validator->fails())
+        {
+            return back()->withErrors($validator);
+        }
+
+        $validated = $validator->validate();
+
+        
     }
 
     /**

@@ -62,12 +62,51 @@
 			                            	<span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300"> {{ $dosen->mahasiswa2()->count() }} mahasiswa</span>
 			                            </td>
 			                            <td class="px-4 py-3 flex items-c0enter justify-end">
-			                                <button id="apple-imac-27-dropdown-button" data-dropdown-toggle="apple-imac-27-dropdown" class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-40 dark:hover:text-gray-100" type="button">
+			                                <button data-modal-target="select-modal_{{ $dosen->id }}" data-modal-toggle="select-modal_{{ $dosen->id }}" id="apple-imac-27-dropdown-button" class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-40 dark:hover:text-gray-100" type="button">
 			                                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
 			                                        <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
 			                                    </svg>
 			                                </button>
 			                            </td>
+			                            <!-- modal start -->
+											<!-- Main modal -->
+											<div id="select-modal_{{ $dosen->id }}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+											    <div class="relative p-4 w-full max-w-md max-h-full">
+											        <!-- Modal content -->
+											        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+											            <!-- Modal header -->
+											            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+											                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+											                    Mahasiswa
+											                </h3>
+											                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm h-8 w-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="select-modal_{{ $dosen->id }}">
+											                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+											                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+											                    </svg>
+											                    <span class="sr-only">Close modal</span>
+											                </button>
+											            </div>
+											            <!-- Modal body -->
+											            <div class="p-4 md:p-5">
+											                <ul class="space-y-4 mb-4">
+											                	@foreach($dosen->mahasiswa2 as $item)
+											                		<li>
+												                        <input type="radio" id="job-1" name="job" value="job-1" class="hidden peer" required />
+												                        <label for="job-1" class="inline-flex items-center justify-between w-full p-5 text-gray-900 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-500 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-900 hover:bg-gray-100 dark:text-white dark:bg-gray-600 dark:hover:bg-gray-500">                           
+												                            <div class="block">
+												                                <div class="w-full text-lg font-semibold"> {{ $item->nama }} </div>
+												                                <div class="w-full text-gray-500 dark:text-gray-400">status </div>
+												                            </div>
+												                            <svg class="w-4 h-4 ms-3 rtl:rotate-180 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/></svg>
+												                        </label>
+												                    </li>
+											                	@endforeach
+											                </ul>
+											            </div>
+											        </div>
+											    </div>
+											</div>
+			                            <!-- modal end -->
 			                        </tr>
 		                    	@endforeach
 		                    </tbody>
