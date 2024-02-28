@@ -42,7 +42,14 @@ class RoomController extends Controller
 
     public function download(Room $room)
     {
-        return response()->download('storage/' . $room->draft, 'Draft Proposal ' . $room->mahasiswa->nama . '.pdf');
+        if($room->draft)
+        {
+            return response()->download('storage/' . $room->draft, 'Draft Proposal ' . $room->mahasiswa->nama . '.pdf');
+        } else {
+            return back()->withErrors([
+                'error' => 'Tidak ada file yang diupload',
+            ]);
+        }
     }
 
     public function revisi(Room $room, Request $request)
@@ -82,7 +89,7 @@ class RoomController extends Controller
         $validated = $validator->validate();
 
         Room::where('id', $room->id)->update($validated);
-        return back()->with([
+        return redirect(route('dosen.bimbingan'))->with([
             'success' => 'Judul Diterima'
         ]);
     }
