@@ -20,6 +20,8 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth', 'checkrole:1,2,3,4,5'])->group(function () {
     Route::get('redirect', [RedirectController::class, 'check'])->name('redirect');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('user/settings/{user}', [UserController::class, 'settings'])->name('user.settings');
+    Route::post('user/settings/{user}', [UserController::class, 'updateAvatar'])->name('update.avatar');
 });
 
 Route::middleware(['auth', 'checkrole:1'])->group(function () {
@@ -58,6 +60,7 @@ Route::middleware(['auth', 'checkrole:3'])->group(function () {
     Route::get('kajur/distribusi2', [KajurController::class, 'distribusi2'])->name('kajur.distribusi2');
     Route::get('kajur/judul/search', [KajurController::class, 'search'])->name('judul.search');
     Route::get('kajur/judul/status', [KajurController::class, 'statusFilter'])->name('judul.statusFilter');
+    Route::get('kajur/mahasiswa/profile/{mahasiswa}', [KajurController::class, 'profileMahasiswa'])->name('mahasiswa.profile');
 });
 
 Route::middleware(['auth', 'checkrole:5'])->group(function () {

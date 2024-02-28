@@ -88,7 +88,7 @@
 	            type="button"
 	            data-drawer-toggle="drawer-navigation"
 	            aria-controls="drawer-navigation"
-	            class="p-2 mr-1 text-gray-500 rounded-lg md:hidden hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+            class="p-2 mr-1 text-gray-500 rounded-lg md:hidden hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
 	          >
 	            <span class="sr-only">Toggle search</span>
 	            <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -101,8 +101,8 @@
 	            data-dropdown-toggle="dropdown">
 	            <span class="sr-only">Open user menu</span>
 	            <img
-	              class="w-8 h-8 rounded-full"
-	              src=" {{ auth()->user()->avatar === null ? asset('img/user1.png') : asset('img/' . auth()->user()->avatar) }} "
+	              class="h-auto max-w-8 rounded-full aspect-square"
+	              src=" {{ auth()->user()->avatar === null ? asset('img/user1.png') : asset('storage/' . auth()->user()->avatar) }} "
 	              alt="user photo"
 	            />
 	          </button>
@@ -129,8 +129,7 @@
 	                >
 	              </li>
 	              <li>
-	                <a
-	                	id="updateProductButton" data-modal-target="updateProductModal" data-modal-toggle="updateProductModal"
+	                <a href=" {{ route('user.settings', ['user' => auth()->user()->id]) }} " 
 	                  class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
 	                  >Account settings</a
 	                >
@@ -391,7 +390,7 @@
 	  @yield('modal')
 	  @yield('script')
 
-	  <!-- user settings modal -->
+	  <!-- <!-- user settings modal -->
 
 		<!-- Main modal -->
 		<div id="updateProductModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
@@ -440,7 +439,7 @@
 		    </div>
 		</div>
 
-	  <!-- end user settings modal -->
+	  <!-- end user settings modal --> -->
 	  <!-- script js -->
 	  	<script>
 	  		const imageInput = document.getElementById('avatar');

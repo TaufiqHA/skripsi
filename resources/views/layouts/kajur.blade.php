@@ -103,7 +103,7 @@
 	            <span class="sr-only">Open user menu</span>
 	            <img
 	              class="w-8 h-8 rounded-full"
-	              src=" {{ auth()->user()->avatar === null ? asset('img/user1.png') : asset('img/' . auth()->user()->avatar) }} "
+	              src=" {{ auth()->user()->avatar === null ? asset('img/user1.png') : asset('storage/' . auth()->user()->avatar) }} "
 	              alt="user photo"
 	            />
 	          </button>
@@ -131,7 +131,7 @@
 	              </li>
 	              <li>
 	                <a
-	                  href="#"
+	                  href=" {{ route('user.settings', ['user' => auth()->user()->id]) }} "
 	                  class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
 	                  >Account settings</a
 	                >

@@ -15,26 +15,18 @@ use Illuminate\Validation\Rules\File;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $role = Role::all();
         return view('admin.addUser', ['title' => 'Tambah User', 'role' => $role]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -99,25 +91,6 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $user)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, User $user)
     {
         $validator = Validator::make($request->all(), [
@@ -145,5 +118,49 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    public function settings(User $user)
+    {
+        if(auth()->user()->role_id === 1)
+        {
+            return view('user.settings', ['title' => 'User Settings', 'extends' => 'layouts.main']);
+        } else if(auth()->user()->role_id === 2) {
+            return view('user.settings', ['title' => 'User Settings', 'extends' => 'layouts.dosen']);
+        } else if(auth()->user()->role_id === 3) {
+            return view('user.settings', ['title' => 'User Settings', 'extends' => 'layouts.kajur']);
+        } else if(auth()->user()->role_id === 4) {
+            return view('user.settings', ['title' => 'User Settings', 'extends' => 'layouts.sekjur']);
+        } else if(auth()->user()->role_id === 5) {
+            return view('user.settings', ['title' => 'User Settings', 'extends' => 'layouts.admin']);
+        }
+    }
+
+    public function updateAvatar(Request $request, User $user)
+    {
+        $validator = Validator::make($request->all(), [
+            'avatar' => [
+                'nullable',
+                File::types(['jpg', 'jpeg', 'png'])
+            ]
+        ]);
+
+        if($validator->fails())
+        {
+            return back()->withErrors($validator);
+        }
+
+        $validated = $validator->validate();
+
+        if($request->file('avatar'))
+        {
+            $validated['avatar'] = $request->file('avatar')->store('image');
+        }
+
+        User::where('id', $user->id)->update($validated);
+
+        return back()->with([
+            'success' => 'Avatar berhasil diubah'
+        ]);
     }
 }

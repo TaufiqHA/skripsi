@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Judul;
 use App\Models\Kajur;
 use App\Models\Dosen;
+use App\Models\Fakultas;
+use App\Models\Jurusan;
+use App\Models\Mahasiswa;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
 class KajurController extends Controller
@@ -56,6 +60,8 @@ class KajurController extends Controller
     public function distribusi()
     {
         $dosens = Dosen::all();
+        $fakultas = Fakultas::all();
+        $jurusan = Jurusan::all();
         return view('kajur.distribusi', ['title' => 'Distribusi dosen', 'dosens' => $dosens]);
     }
 
@@ -81,5 +87,14 @@ class KajurController extends Controller
     public function statusFilter(Request $request)
     {
         $juduls = Judul::where('status', 'LIKE', "%$request->search%")->get();
+    }
+
+    public function profileMahasiswa(Mahasiswa $mahasiswa)
+    {
+        $jurusan = Jurusan::all();
+        $fakultas = Fakultas::all();
+        $dosen = Dosen::all();
+        $user = User::find($mahasiswa->user_id);
+        return view('kajur.profileMahasiswa', ['title' => 'Profile Mahasiswa', 'mahasiswa' => $mahasiswa, 'fakultas' => $fakultas, 'jurusan' => $jurusan, 'dosen' => $dosen, 'user' => $user]);
     }
 }
