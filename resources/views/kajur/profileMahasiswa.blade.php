@@ -71,7 +71,7 @@
 		  </div>
 		</section>
 		<div class="w-full h-fit bg-white p-5 col-span-2 flex justify-center items-center" >
-			<img class="h-auto max-w-xs rounded-lg" src=" {{ $user->avatar ? asset('img/$user->avatar') : asset('img/user1.png') }} " alt="image description">
+			<img class="h-auto max-w-xs rounded-lg" src=" {{ $user->avatar ? asset('storage/' . $user->avatar) : asset('img/user1.png') }} " alt="image description">
 		</div>
 	</div>
 @endsection
