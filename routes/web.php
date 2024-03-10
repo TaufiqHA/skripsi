@@ -11,11 +11,11 @@ use App\Http\Controllers\KajurController;
 use App\Http\Controllers\BimbinganController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\DosenController;
+use App\Http\Controllers\passwordController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 Route::middleware(['guest'])->group(function () {
@@ -119,3 +119,5 @@ Route::post('/reset-password', function(Request $request) {
         ? redirect()->route('login')->with('status', __($status))
         : back()->withErrors(['email' => [__($status)]]);
 })->middleware('guest')->name('password.update');
+
+Route::put('password', [passwordController::class, 'update'])->middleware('auth')->name('password.updated');
