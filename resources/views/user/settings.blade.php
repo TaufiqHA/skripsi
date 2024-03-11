@@ -35,7 +35,7 @@
 		  </button>
 		</div>
 	@endif
-	<div class="w-full h-full grid grid-rows-4 gap-4 lg:grid-cols-4" >
+	<div class="w-full grid grid-rows-2 gap-4 lg:grid-cols-4" >
 		<section class="bg-gray-50 dark:bg-gray-900 col-span-2">
 		  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-full lg:py-0">
 		      <div class="w-full p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md dark:bg-gray-800 dark:border-gray-700 sm:p-8">
