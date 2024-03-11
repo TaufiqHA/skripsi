@@ -98,7 +98,9 @@ class UserController extends Controller
             'email' => 'email',
             'avatar' => [
                 'nullable',
-                File::types(['jpg', 'jpeg', 'png'])
+                File::image()
+                    ->min('1kb')
+                    ->max('300kb')
             ]
         ]);
 
@@ -141,7 +143,9 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'avatar' => [
                 'nullable',
-                File::types(['jpg', 'jpeg', 'png'])
+                File::image()
+                    ->min('1kb')
+                    ->max('300kb')
             ]
         ]);
 
