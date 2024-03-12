@@ -1,8 +1,8 @@
 @extends('layouts.kajur')
 
 @section('container')
-	<div class="w-full h-full grid grid-rows-1 lg:grid-cols-4 gap-4" >
-		<section class="bg-white dark:bg-gray-900 col-span-2">
+	<div class="w-full h-full grid lg:grid-cols-4 gap-4" >
+		<section class="bg-white dark:bg-gray-900 lg:col-span-2">
 		  <div class="max-w-4xl px-4 py-8 mx-auto lg:py-6">
 		      <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Data diri</h2>
 		      <div>
@@ -70,8 +70,8 @@
 		      </div>
 		  </div>
 		</section>
-		<div class="w-full h-fit bg-white p-5 col-span-2 flex justify-center items-center" >
-			<img class="h-auto max-w-xs rounded-lg" src=" {{ $user->avatar ? asset('storage/' . $user->avatar) : asset('img/user1.png') }} " alt="image description">
+		<div class="w-full h-fit bg-white p-5 lg:col-span-2 flex justify-center items-center" >
+			<img class="w-full h-auto max-w-xs rounded-lg" src=" {{ $user->avatar ? asset('storage/' . $user->avatar) : asset('img/user1.png') }} " alt="image description">
 		</div>
 	</div>
 @endsection
