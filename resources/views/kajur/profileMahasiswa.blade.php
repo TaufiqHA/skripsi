@@ -1,7 +1,7 @@
 @extends('layouts.kajur')
 
 @section('container')
-	<div class="w-full h-full grid grid-rows-1 lg:grid-cols-4 gap-4 overflow-x-hidden" >
+	<div class="w-full h-full grid grid-rows-1 lg:grid-cols-4 gap-4" >
 		<section class="bg-white dark:bg-gray-900 col-span-2">
 		  <div class="max-w-4xl px-4 py-8 mx-auto lg:py-6">
 		      <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Data diri</h2>
