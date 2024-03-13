@@ -70,8 +70,12 @@ class MahasiswaController extends Controller
         return view('seminar.proposal', ['title' => 'Seminar Proposal', 'mahasiswa' => $mahasiswa, 'fakultas' => $fakultas, 'jurusan' => $jurusan, 'dosen' => $dosen, 'judul' => $judul]);
     }
 
-    public function hasil()
+    public function hasil(Mahasiswa $mahasiswa)
     {
-        return view('seminar.hasil', ['title' => 'Seminar Hasil']);
+        $fakultas = Fakultas::all();
+        $jurusan = Jurusan::all();
+        $dosen = Dosen::all();
+        $judul = Judul::where('id', $mahasiswa->id)->where('status', 'Diterima')->first();
+        return view('seminar.hasil', ['title' => 'Seminar Hasil', 'mahasiswa' => $mahasiswa, 'fakultas' => $fakultas, 'jurusan' => $jurusan, 'dosen' => $dosen, 'judul' => $judul]);
     }
 }

@@ -41,7 +41,7 @@ Route::middleware(['auth', 'checkrole:1'])->group(function () {
     Route::get('mahasiswa/bimbingan', [BimbinganController::class, 'index'])->name('mahasiswa.bimbingan');
     Route::post('room/draft/{room}', [RoomController::class, 'uploadDraft'])->name('room.upload');
     Route::get('mahasiswa/sempro/{mahasiswa}', [MahasiswaController::class, 'sempro'])->name('seminar.proposal');
-    Route::get('mahasiswa/hasil', [MahasiswaController::class, 'hasil'])->name('seminar.hasil');
+    Route::get('mahasiswa/hasil/{mahasiswa}', [MahasiswaController::class, 'hasil'])->name('seminar.hasil');
     Route::post('seminar/create', [PengajuanController::class, 'create'])->name('seminar.create');
 });
 
