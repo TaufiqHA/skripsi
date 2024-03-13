@@ -8,6 +8,7 @@ use App\Models\Fakultas;
 use App\Models\Jurusan;
 use App\Models\Dosen;
 use App\Models\Room;
+use App\Models\Judul;
 use Illuminate\Support\Facades\Validator;
 
 class MahasiswaController extends Controller
@@ -60,9 +61,13 @@ class MahasiswaController extends Controller
         return view('mahasiswa.room', ['title' => 'Bimbingan', 'room' => $room]);
     }
 
-    public function sempro()
+    public function sempro(Mahasiswa $mahasiswa)
     {
-        return view('seminar.proposal', ['title' => 'Seminar Proposal']);
+        $fakultas = Fakultas::all();
+        $jurusan = Jurusan::all();
+        $dosen = Dosen::all();
+        $judul = Judul::where('id', $mahasiswa->id)->where('status', 'Diterima')->first();
+        return view('seminar.proposal', ['title' => 'Seminar Proposal', 'mahasiswa' => $mahasiswa, 'fakultas' => $fakultas, 'jurusan' => $jurusan, 'dosen' => $dosen, 'judul' => $judul]);
     }
 
     public function hasil()

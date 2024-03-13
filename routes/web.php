@@ -12,6 +12,7 @@ use App\Http\Controllers\BimbinganController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\passwordController;
+use App\Http\Controllers\PengajuanController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
@@ -39,8 +40,9 @@ Route::middleware(['auth', 'checkrole:1'])->group(function () {
     Route::get('bimbingan/room/{room}', [MahasiswaController::class, 'room'])->name('bimbingan.room');
     Route::get('mahasiswa/bimbingan', [BimbinganController::class, 'index'])->name('mahasiswa.bimbingan');
     Route::post('room/draft/{room}', [RoomController::class, 'uploadDraft'])->name('room.upload');
-    Route::get('mahasiswa/sempro', [MahasiswaController::class, 'sempro'])->name('seminar.proposal');
+    Route::get('mahasiswa/sempro/{mahasiswa}', [MahasiswaController::class, 'sempro'])->name('seminar.proposal');
     Route::get('mahasiswa/hasil', [MahasiswaController::class, 'hasil'])->name('seminar.hasil');
+    Route::post('seminar/create', [PengajuanController::class, 'create'])->name('seminar.create');
 });
 
 Route::middleware(['auth','checkrole:2'])->group(function () {
