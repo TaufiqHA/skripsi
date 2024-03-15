@@ -108,7 +108,7 @@
 	          </button>
 	          <!-- Dropdown menu -->
 	          <div
-	            class="hidden z-50 my-4 w-56 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 rounded-xl"
+	            class="hidden z-50 my-4 w-56 text-base list-none bg-white divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 rounded-xl"
 	            id="dropdown"
 	          >
 	            <div class="py-3 px-4">
@@ -129,7 +129,7 @@
 	                >
 	              </li>
 	              <li>
-	                <a href=" {{ route('user.settings', ['user' => auth()->user()->id]) }} " 
+	                <a href=" {{ route('user.settings', ['user' => auth()->user()->id]) }} "
 	                  class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
 	                  >Account settings</a
 	                >
