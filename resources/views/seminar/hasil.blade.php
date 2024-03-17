@@ -3,7 +3,7 @@
 $status = false;
 
 foreach ($judul2 as $item) {
-	if($item->status = 'Diterima') {
+	if($item->status === 'Diterima') {
 		$status = true;
 		break;
 	}

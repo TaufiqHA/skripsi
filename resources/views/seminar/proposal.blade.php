@@ -1,12 +1,16 @@
 <?php 
 
+$statusList = [];
 $status = false;
 
-foreach ($judul2 as $item) {
-	if($item->status === 'Diterima') {
-		$status = true;
-		break;
-	}
+foreach ($room as $item) {
+	$statusList[] = $item->status;
+}
+
+if(in_array(null, $statusList)) {
+	$status = false;
+} else {
+	$status = true;
 }
 
  ?>
@@ -38,7 +42,7 @@ foreach ($judul2 as $item) {
 		    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
 		        <div class="mx-auto max-w-screen-sm text-center">
 		            <p class="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white">Akses ditolak</p>
-		            <p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">Belum terdapat judul yang diterima</p>
+		            <p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">Judul belum disetujui dosen pembimbing</p>
 		        </div>   
 		    </div>
 		</section>
