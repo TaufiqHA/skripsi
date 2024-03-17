@@ -18,6 +18,18 @@
 	  </button>
 	</div>
 @endif
+@if($judul === null)
+	<div class="w-full h-full" >
+		 <section class="bg-white dark:bg-gray-900">
+		    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+		        <div class="mx-auto max-w-screen-sm text-center">
+		            <p class="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white">Akses ditolak</p>
+		            <p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">Belum terdapat judul yang diterima</p>
+		        </div>   
+		    </div>
+		</section>
+	</div>
+@else
 	<div class="w-full h-full grid gap-4 lg:grid-cols-4" >
 		<section class="bg-white h-fit dark:bg-gray-900 px-3 lg:col-span-2">
 		  <div class="max-w-4xl px-4 py-8 mx-auto lg:py-16">
@@ -97,4 +109,6 @@
 		  </div>
 		</section>
 	</div>
+@endif
+	
 @endsection

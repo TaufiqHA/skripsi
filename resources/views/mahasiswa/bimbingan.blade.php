@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
-	<div class="w-full h-full flex flex-col gap-5 md:flex-row " >
+	<div class="w-full h-full flex flex-col gap-5 md:flex-row {{ $mahasiswa->statusTA === 'Belum mengajukan' ? 'hidden' : '' }} " >
 		@foreach($rooms as $key => $room)
 			<div class="w-full max-w-full md:max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 			    <div class="flex flex-col items-center py-10">
@@ -50,5 +50,15 @@
 			    </div>
 			</div>
 		@endforeach
+	</div>
+	<div class="w-full h-full" >
+		 <section class="bg-white dark:bg-gray-900 {{ $mahasiswa->statusTA === 'Belum mengajukan' ? '' : 'hidden' }} ">
+		    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+		        <div class="mx-auto max-w-screen-sm text-center">
+		            <p class="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white">Akses ditolak</p>
+		            <p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">Belum teradapat judul yang diterima</p>
+		        </div>   
+		    </div>
+		</section>
 	</div>
 @endsection

@@ -51,7 +51,7 @@ foreach($juduls as $item)
 			  </button>
 			</div>
 		@endif
-		<section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5 h-full overflow-y-auto">
+		<section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5 h-full overflow-y-auto {{ $mahasiswa->nama === null ? 'hidden' : '' }} ">
 		    <div class="mx-auto max-w-screen-xl lg:px-12">
 		        <!-- Start coding here -->
 		        <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
@@ -206,6 +206,14 @@ foreach($juduls as $item)
 		        </div>
 		    </div>
 	    </section>
+	     <section class="bg-white dark:bg-gray-900 {{ $mahasiswa->nama === null ? '' : 'hidden' }} ">
+		    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+		        <div class="mx-auto max-w-screen-sm text-center">
+		            <p class="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white">Akses ditolak</p>
+		            <p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">Silahkan lengkapi data diri sebelum akses halaman ini</p>
+		        </div>   
+		    </div>
+		</section>
 	</div>
 @endsection
 

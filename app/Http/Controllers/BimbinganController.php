@@ -10,6 +10,6 @@ class BimbinganController extends Controller
     {
         $mahasiswa = auth()->user()->mahasiswa;
         $rooms = $mahasiswa->room;
-        return view('mahasiswa.bimbingan', ['title' => 'Bimbingan', 'rooms' => $rooms]);
+        return view('mahasiswa.bimbingan', ['title' => 'Bimbingan', 'rooms' => $rooms, 'mahasiswa' => $mahasiswa]);
     }
 }
