@@ -75,6 +75,9 @@ Route::middleware(['auth', 'checkrole:5'])->group(function () {
     Route::get('admin', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('user/create', [UserController::class, 'create'])->name('user.create');
     Route::post('user/create', [UserController::class, 'store'])->name('user.addUser');
+    Route::get('admin/mahasiswa', [AdminController::class, 'mahasiswa'])->name('admin.mahasiswa');
+    Route::get('admin/mahasiswa/profile/{mahasiswa}', [AdminController::class, 'profileMahasiswa'])->name('admin.mahasiswa.profile');
+    Route::get('admin/mahasiswa/search', [AdminController::class, 'search'])->name('admin.mahasiswa.search');
 });
 
 Route::get('/forgot-password', function() {
