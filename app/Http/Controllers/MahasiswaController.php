@@ -67,7 +67,8 @@ class MahasiswaController extends Controller
         $jurusan = Jurusan::all();
         $dosen = Dosen::all();
         $judul = Judul::where('id', $mahasiswa->id)->where('status', 'Diterima')->first();
-        return view('seminar.proposal', ['title' => 'Seminar Proposal', 'mahasiswa' => $mahasiswa, 'fakultas' => $fakultas, 'jurusan' => $jurusan, 'dosen' => $dosen, 'judul' => $judul]);
+        $judul2 = Judul::where('id', $mahasiswa->id)->get();
+        return view('seminar.proposal', ['title' => 'Seminar Proposal', 'mahasiswa' => $mahasiswa, 'fakultas' => $fakultas, 'jurusan' => $jurusan, 'dosen' => $dosen, 'judul' => $judul, 'judul2' => $judul2]);
     }
 
     public function hasil(Mahasiswa $mahasiswa)
@@ -76,6 +77,7 @@ class MahasiswaController extends Controller
         $jurusan = Jurusan::all();
         $dosen = Dosen::all();
         $judul = Judul::where('id', $mahasiswa->id)->where('status', 'Diterima')->first();
-        return view('seminar.hasil', ['title' => 'Seminar Hasil', 'mahasiswa' => $mahasiswa, 'fakultas' => $fakultas, 'jurusan' => $jurusan, 'dosen' => $dosen, 'judul' => $judul]);
+        $judul2 = Judul::where('id', $mahasiswa->id)->get();
+        return view('seminar.hasil', ['title' => 'Seminar Hasil', 'mahasiswa' => $mahasiswa, 'fakultas' => $fakultas, 'jurusan' => $jurusan, 'dosen' => $dosen, 'judul' => $judul, 'judul2' => $judul2]);
     }
 }

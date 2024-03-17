@@ -1,3 +1,17 @@
+<?php 
+
+$status = false;
+
+foreach ($judul2 as $item) {
+	if($item->status === 'Diterima') {
+		$status = true;
+		break;
+	}
+}
+
+ ?>
+
+
 @extends('layouts.main')
 
 @section('container')
@@ -18,7 +32,7 @@
 	  </button>
 	</div>
 @endif
-@if($judul === null)
+@if($status === false)
 	<div class="w-full h-full" >
 		 <section class="bg-white dark:bg-gray-900">
 		    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
