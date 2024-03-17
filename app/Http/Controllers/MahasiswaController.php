@@ -68,7 +68,21 @@ class MahasiswaController extends Controller
         $dosen = Dosen::all();
         $judul = Judul::where('id', $mahasiswa->id)->where('status', 'Diterima')->first();
         $room = auth()->user()->mahasiswa->room;
-        return view('seminar.proposal', ['title' => 'Seminar Proposal', 'mahasiswa' => $mahasiswa, 'fakultas' => $fakultas, 'jurusan' => $jurusan, 'dosen' => $dosen, 'judul' => $judul, 'room' => $room]);
+
+        $statusList = [];
+        $status = false;
+
+        foreach ($room as $item) {
+            $statusList[] = $item->status;
+        }
+
+        if(in_array(null, $statusList)) {
+            $status = false;
+        } else {
+            $status = true;
+        }
+
+        return view('seminar.proposal', ['title' => 'Seminar Proposal', 'mahasiswa' => $mahasiswa, 'fakultas' => $fakultas, 'jurusan' => $jurusan, 'dosen' => $dosen, 'judul' => $judul, 'status' => $status]);
     }
 
     public function hasil(Mahasiswa $mahasiswa)

@@ -1,21 +1,3 @@
-<?php 
-
-$statusList = [];
-$status = false;
-
-foreach ($room as $item) {
-	$statusList[] = $item->status;
-}
-
-if(in_array(null, $statusList)) {
-	$status = false;
-} else {
-	$status = true;
-}
-
- ?>
-
-
 @extends('layouts.main')
 
 @section('container')
