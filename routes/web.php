@@ -78,6 +78,7 @@ Route::middleware(['auth', 'checkrole:5'])->group(function () {
     Route::get('admin/mahasiswa', [AdminController::class, 'mahasiswa'])->name('admin.mahasiswa');
     Route::get('admin/mahasiswa/profile/{mahasiswa}', [AdminController::class, 'profileMahasiswa'])->name('admin.mahasiswa.profile');
     Route::get('admin/mahasiswa/search', [AdminController::class, 'search'])->name('admin.mahasiswa.search');
+    Route::get('admin/mahasiswa/filter', [AdminController::class, 'filter'])->name('admin.mahasiswa.filter');
 });
 
 Route::get('/forgot-password', function() {

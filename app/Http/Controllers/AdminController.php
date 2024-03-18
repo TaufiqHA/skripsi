@@ -38,5 +38,16 @@ class AdminController extends Controller
             $mahasiswa = Mahasiswa::paginate(10);
         }
         return view('admin.mahasiswa', ['title' => 'List Mahsiswa', 'mahasiswa' => $mahasiswa]);
-    
-}}
+    }
+
+    public function filter(Request $request)
+    {
+        if($request->has('search'))
+        {
+            $mahasiswa = Mahasiswa::where('angkatan', 'LIKE', '%'.$request->search.'%')->paginate(10);
+        } else {
+            $mahasiswa = Mahasiswa::paginate(10);
+        }
+        return view('admin.mahasiswa', ['title' => 'List Mahsiswa', 'mahasiswa' => $mahasiswa]);
+    }
+}
