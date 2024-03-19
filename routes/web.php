@@ -13,6 +13,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\passwordController;
 use App\Http\Controllers\PengajuanController;
+use App\Http\Controllers\sendMessageController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
@@ -69,6 +70,7 @@ Route::middleware(['auth', 'checkrole:3'])->group(function () {
     Route::get('kajur/judul/search', [KajurController::class, 'search'])->name('judul.search');
     Route::get('kajur/judul/status', [KajurController::class, 'statusFilter'])->name('judul.statusFilter');
     Route::get('kajur/mahasiswa/profile/{mahasiswa}', [KajurController::class, 'profileMahasiswa'])->name('mahasiswa.profile');
+    Route::post('kajur/send', [sendMessageController::class, 'send'])->name('send.message');
 });
 
 Route::middleware(['auth', 'checkrole:5'])->group(function () {
