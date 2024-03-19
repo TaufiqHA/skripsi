@@ -69,6 +69,13 @@ class MahasiswaController extends Controller
         $judul = Judul::where('id', $mahasiswa->id)->where('status', 'Diterima')->first();
         $room = auth()->user()->mahasiswa->room;
 
+        $statusPengajuan = false;
+
+        if(isset(auth()->user()->mahasiswa->pengajuan))
+        {
+            $statusPengajuan = true;
+        }
+
         $statusList = [];
         $status = false;
 
@@ -82,7 +89,7 @@ class MahasiswaController extends Controller
             $status = true;
         }
 
-        return view('seminar.proposal', ['title' => 'Seminar Proposal', 'mahasiswa' => $mahasiswa, 'fakultas' => $fakultas, 'jurusan' => $jurusan, 'dosen' => $dosen, 'judul' => $judul, 'status' => $status]);
+        return view('seminar.proposal', ['title' => 'Seminar Proposal', 'mahasiswa' => $mahasiswa, 'fakultas' => $fakultas, 'jurusan' => $jurusan, 'dosen' => $dosen, 'judul' => $judul, 'status' => $status, 'statusPengajuan' => $statusPengajuan]);
     }
 
     public function hasil(Mahasiswa $mahasiswa)
