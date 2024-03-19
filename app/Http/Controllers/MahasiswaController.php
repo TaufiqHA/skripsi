@@ -76,7 +76,7 @@ class MahasiswaController extends Controller
             $statusList[] = $item->status;
         }
 
-        if(in_array(null, $statusList)) {
+        if(in_array(null, $statusList) || empty($statusList)) {
             $status = false;
         } else {
             $status = true;
