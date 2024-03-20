@@ -7,6 +7,7 @@ use App\Models\Mahasiswa;
 use App\Models\Dosen;
 use App\Models\User;
 use App\Models\Judul;
+use App\Models\Angkatan;
 
 class AdminController extends Controller
 {
@@ -19,7 +20,8 @@ class AdminController extends Controller
     public function mahasiswa()
     {
         $mahasiswa = Mahasiswa::paginate(10);
-        return view('admin.mahasiswa', ['title' => 'List Mahasiswa', 'mahasiswa' => $mahasiswa]);
+        $angkatan = Angkatan::all();
+        return view('admin.mahasiswa', ['title' => 'List Mahasiswa', 'mahasiswa' => $mahasiswa, 'angkatan' => $angkatan]);
     }
 
     public function profileMahasiswa(Mahasiswa $mahasiswa)
@@ -37,7 +39,8 @@ class AdminController extends Controller
         } else {
             $mahasiswa = Mahasiswa::paginate(10);
         }
-        return view('admin.mahasiswa', ['title' => 'List Mahsiswa', 'mahasiswa' => $mahasiswa]);
+        $angkatan = Angkatan::all();
+        return view('admin.mahasiswa', ['title' => 'List Mahsiswa', 'mahasiswa' => $mahasiswa, 'angkatan' => $angkatan]);
     }
 
     public function filter(Request $request)
@@ -48,6 +51,7 @@ class AdminController extends Controller
         } else {
             $mahasiswa = Mahasiswa::paginate(10);
         }
-        return view('admin.mahasiswa', ['title' => 'List Mahsiswa', 'mahasiswa' => $mahasiswa]);
+        $angkatan = Angkatan::all();
+        return view('admin.mahasiswa', ['title' => 'List Mahsiswa', 'mahasiswa' => $mahasiswa, 'angkatan' => $angkatan]);
     }
 }

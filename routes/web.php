@@ -14,6 +14,7 @@ use App\Http\Controllers\DosenController;
 use App\Http\Controllers\passwordController;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\sendMessageController;
+use App\Http\Controllers\AngkatanController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
@@ -81,6 +82,7 @@ Route::middleware(['auth', 'checkrole:5'])->group(function () {
     Route::get('admin/mahasiswa/profile/{mahasiswa}', [AdminController::class, 'profileMahasiswa'])->name('admin.mahasiswa.profile');
     Route::get('admin/mahasiswa/search', [AdminController::class, 'search'])->name('admin.mahasiswa.search');
     Route::get('admin/mahasiswa/filter', [AdminController::class, 'filter'])->name('admin.mahasiswa.filter');
+    Route::post('admin/angkatan', [AngkatanController::class, 'add'])->name('admin.angkatan.add');
 });
 
 Route::get('/forgot-password', function() {
