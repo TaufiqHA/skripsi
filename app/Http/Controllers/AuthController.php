@@ -43,7 +43,7 @@ class AuthController extends Controller
                 return redirect('/admin');
             }
         } else {
-            return back()->withErrors([
+            return back()->withInput()->withErrors([
                 'errors' => 'Username atau kata sandi salah !!!'
             ]);
         }
