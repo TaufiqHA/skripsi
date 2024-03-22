@@ -35,7 +35,7 @@ class AdminController extends Controller
     {   
         if($request->has('search'))
         {
-            $mahasiswa = Mahasiswa::where('nama', 'LIKE', '%'.$request->search.'%')->orWhere('angkatan', 'LIKE', '%'.$request->search.'%')->paginate(10);
+            $mahasiswa = Mahasiswa::where('nama', 'LIKE', '%'.$request->search.'%')->paginate(10);
         } else {
             $mahasiswa = Mahasiswa::paginate(10);
         }
