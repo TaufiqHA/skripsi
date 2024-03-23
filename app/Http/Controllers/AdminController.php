@@ -54,4 +54,9 @@ class AdminController extends Controller
         $angkatan = Angkatan::all();
         return view('admin.mahasiswa', ['title' => 'List Mahsiswa', 'mahasiswa' => $mahasiswa, 'angkatan' => $angkatan]);
     }
+
+    public function appSettings()
+    {
+        return view('admin.appSettings', ['title' => 'Application Settings']);
+    }
 }

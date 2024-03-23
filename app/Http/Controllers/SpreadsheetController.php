@@ -14,6 +14,7 @@ class SpreadsheetController extends Controller
     public function create(Request $request)
     {
         $spreadsheet = new Spreadsheet();
+        $spreadsheet->getDefaultStyle()->getFont()->setName('Garamond');
         $sheet = $spreadsheet->getActiveSheet();
         $header_data = ['Nama', 'NIM', 'Angkatan','Dosen Pembimbing 1', 'Dosen Pembimbing 2', 'Status tugas akhir'];
         $sheet->fromArray($header_data, null, 'A1');
@@ -64,6 +65,8 @@ class SpreadsheetController extends Controller
             ],
             'font' => [
                 'bold' => true,
+                'italic' => true,
+                'name' => 'Arial',
             ]
         ];
 

@@ -86,6 +86,7 @@ Route::middleware(['auth', 'checkrole:5'])->group(function () {
     Route::post('admin/angkatan', [AngkatanController::class, 'add'])->name('admin.angkatan.add');
     Route::get('admin/excel', [SpreadsheetController::class, 'create'])->name('admin.excel');
     Route::post('admin/excel/template', [SpreadsheetController::class, 'uploadTemplate'])->name('admin.exce.template');
+    Route::get('admin/appSettings', [AdminController::class, 'appSettings'])->name('admin.appSettings');
 });
 
 Route::get('/forgot-password', function() {
