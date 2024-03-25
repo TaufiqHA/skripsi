@@ -8,6 +8,8 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use App\Models\Template;
 use App\Models\Mahasiswa;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\File;
 
 class SpreadsheetController extends Controller
 {
@@ -93,35 +95,5 @@ class SpreadsheetController extends Controller
 
         $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
         $writer->save('php://output');
-    }
-
-    public function uploadTemplate(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'template' => [
-                'required',
-                File::types('xlsx')
-                    ->min('1kb')
-                    ->max('1mb')
-            ]
-        ]);
-
-        if($validator->fails())
-        {
-            return back()->withErrors($validator);
-        }
-
-        $validated = $validator->validate();
-
-        $validated['template'] = $request->file('template')->store('file');
-
-        Template::make($validated);
-
-        return back()->with('success', 'Berhasil menambahkan template');
-    }
-
-    public function readTemplate()
-    {
-
     }
 }
