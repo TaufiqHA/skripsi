@@ -59,4 +59,31 @@ class AdminController extends Controller
     {
         return view('admin.appSettings', ['title' => 'Application Settings']);
     }
+
+    public function dosen()
+    {
+        $dosen = Dosen::all();
+        return view('admin.dosen', ['title' => 'Dosen', 'dosen' => $dosen]);
+    }
+
+    public function searchDosen(Request $request)
+    {
+        if($request->has('search'))
+        {
+            $validated = $request->validate([
+                'search' => 'required',
+            ]);
+
+            $dosen = Dosen::where('nama', 'LIKE', '%' . $request->search . '%')->get();
+            return view('admin.dosen', ['title' => 'Dosen', 'dosen' => $dosen]);
+        } else {
+            $dosen = Dosen::all();
+            return view('admin.dosen', ['title' => 'Dosen', 'dosen' => $dosen]);
+        }
+    }
+
+    public function detailDosen(Dosen $dosen)
+    {
+        return view('admin.detailDosen', ['title' => 'Detail Dosen', 'dosen' => $dosen]);
+    }
 }
