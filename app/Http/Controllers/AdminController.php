@@ -8,6 +8,8 @@ use App\Models\Dosen;
 use App\Models\User;
 use App\Models\Judul;
 use App\Models\Angkatan;
+use App\Models\Fakultas;
+use App\Models\Jurusan;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -30,6 +32,41 @@ class AdminController extends Controller
         $dosen = Dosen::where('id', $mahasiswa->dosen_pa)->first();
         $user = User::find($mahasiswa->user_id);
         return view('admin.profileMahasiswa', ['title' => $mahasiswa->nama, 'mahasiswa' => $mahasiswa, 'dosen' => $dosen, 'user' => $user]);
+    }
+
+    public function editMahasiswa(Mahasiswa $mahasiswa)
+    {
+        $jurusan = Jurusan::all();
+        $fakultas = Fakultas::all();
+        $dosen = Dosen::all();
+        return view('admin.editMahasiswa', ['title' => 'Edit Mahasiswa', 'mahasiswa' => $mahasiswa, 'jurusan' => $jurusan, 'fakultas' => $fakultas, 'dosen' => $dosen]);
+    }
+
+    public function updateMahasiswa(Mahasiswa $mahasiswa, Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required',
+            'nim' => 'required',
+            'angkatan' => 'required',
+            'sks' => 'required',
+            'fakultas' => 'required',
+            'jurusan' => 'required',
+            'tanggal_ta' => 'required',
+            'surah' => 'required',
+            'ipk' => 'required',
+            'hp' => 'required'
+        ]);
+
+        if($validator->fails())
+        {
+            return back()->withErrors($validator);
+        }
+
+        $validated = $validator->validate();
+
+        $mahasiswa->update($validated);
+
+        return back()->with('success', 'Update mahasiswa berhasil');
     }
 
     public function deleteMahasiswa(Mahasiswa $mahasiswa)
