@@ -8,6 +8,7 @@ use App\Models\Dosen;
 use App\Models\User;
 use App\Models\Judul;
 use App\Models\Angkatan;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -29,6 +30,12 @@ class AdminController extends Controller
         $dosen = Dosen::where('id', $mahasiswa->dosen_pa)->first();
         $user = User::find($mahasiswa->user_id);
         return view('admin.profileMahasiswa', ['title' => $mahasiswa->nama, 'mahasiswa' => $mahasiswa, 'dosen' => $dosen, 'user' => $user]);
+    }
+
+    public function deleteMahasiswa(Mahasiswa $mahasiswa)
+    {
+        $mahasiswa->delete();
+        return back()->with('success', 'Berhasil menghapus mahasiswa');
     }
 
     public function search(Request $request)
@@ -85,5 +92,38 @@ class AdminController extends Controller
     public function detailDosen(Dosen $dosen)
     {
         return view('admin.detailDosen', ['title' => 'Detail Dosen', 'dosen' => $dosen]);
+    }
+
+    public function deleteDosen(Dosen $dosen)
+    {
+        $dosen->delete();
+        return back()->with('success', 'Berhasil menghapus dosen');
+    }
+
+    public function editDosen(Dosen $dosen)
+    {
+        return view('admin.editDosen', ['title' => 'Edit Dosen', 'dosen' => $dosen]);
+    }
+
+    public function updateDosen(Dosen $dosen, Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required',
+            'nip' => 'required',
+            'jabatan' => 'required',
+            'kategori' => 'required',
+            'status' => 'required'
+        ]);
+
+        if($validator->fails())
+        {
+            return back()->withErrors($validator);
+        }
+
+        $validated = $validator->validate();
+
+        $dosen->update($validated);
+
+        return back()->with('success', 'Update dosen berhasil');
     }
 }
