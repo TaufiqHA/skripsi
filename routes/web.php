@@ -89,12 +89,13 @@ Route::middleware(['auth', 'checkrole:5'])->group(function () {
     Route::get('admin/dosen', [AdminController::class, 'dosen'])->name('admin.dosen');
     Route::post('admin/searchDosen', [AdminController::class, 'searchDosen'])->name('admin.searchDosen');
     Route::get('admin/detailDosen/{dosen}', [AdminController::class, 'detailDosen'])->name('admin.detailDosen');
-    Route::delete('admin/deleteDosen/{dosen}', [AdminController::class, 'deleteDosen'])->name('admin.deleteDosen');
+    // Route::delete('admin/deleteDosen/{dosen}', [AdminController::class, 'deleteDosen'])->name('admin.deleteDosen');
     Route::get('admin/editDosen/{dosen}', [AdminController::class, 'editDosen'])->name('admin.editDosen');
     Route::put('admin/updateDosen/{dosen}', [AdminController::class, 'updateDosen'])->name('admin.updateDosen');
-    Route::delete('admin/deleteMahasiswa/{mahasiswa}', [AdminController::class, 'deleteMahasiswa'])->name('admin.deleteMahasiswa');
+    // Route::delete('admin/deleteMahasiswa/{mahasiswa}', [AdminController::class, 'deleteMahasiswa'])->name('admin.deleteMahasiswa');
     Route::get('admin/editMahasiswa/{mahasiswa}', [AdminController::class, 'editMahasiswa'])->name('admin.editMahasiswa');
     Route::put('admin/updateMahasiswa/{mahasiswa}', [AdminController::class, 'updateMahasiswa'])->name('admin.updateMahasiswa');
+    Route::get('admin/seminar', [AdminController::class, 'seminar'])->name('admin.seminar');
 });
 
 Route::get('/forgot-password', function() {

@@ -64,4 +64,11 @@ class User extends Authenticatable
     {
         return $this->hasOne(Admin::class);
     }
+
+    // protected static function booted()
+    // {
+    //     static::deleted(function ($user) {
+    //         $user->mahasiswa()->delete();
+    //     });
+    // }
 }

@@ -10,6 +10,7 @@ use App\Models\Judul;
 use App\Models\Angkatan;
 use App\Models\Fakultas;
 use App\Models\Jurusan;
+use App\Models\Pengajuan;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -69,11 +70,11 @@ class AdminController extends Controller
         return back()->with('success', 'Update mahasiswa berhasil');
     }
 
-    public function deleteMahasiswa(Mahasiswa $mahasiswa)
-    {
-        $mahasiswa->delete();
-        return back()->with('success', 'Berhasil menghapus mahasiswa');
-    }
+    // public function deleteMahasiswa(Mahasiswa $mahasiswa)
+    // {
+    //     $mahasiswa->delete();
+    //     return back()->with('success', 'Berhasil menghapus mahasiswa');
+    // }
 
     public function search(Request $request)
     {   
@@ -131,11 +132,11 @@ class AdminController extends Controller
         return view('admin.detailDosen', ['title' => 'Detail Dosen', 'dosen' => $dosen]);
     }
 
-    public function deleteDosen(Dosen $dosen)
-    {
-        $dosen->delete();
-        return back()->with('success', 'Berhasil menghapus dosen');
-    }
+    // public function deleteDosen(Dosen $dosen)
+    // {
+    //     $dosen->delete();
+    //     return back()->with('success', 'Berhasil menghapus dosen');
+    // }
 
     public function editDosen(Dosen $dosen)
     {
@@ -162,5 +163,11 @@ class AdminController extends Controller
         $dosen->update($validated);
 
         return back()->with('success', 'Update dosen berhasil');
+    }
+
+    public function seminar()
+    {
+        $pengajuan = Pengajuan::where('jenis', 'proposal')->paginate(10);
+        return view('admin.seminar', ['title' => 'Seminar', 'pengajuan' => $pengajuan]);
     }
 }

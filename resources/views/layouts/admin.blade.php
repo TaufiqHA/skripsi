@@ -172,6 +172,50 @@
 	              <span class="flex-1 ml-3 whitespace-nowrap">Dosen</span>
 	            </a>
 	          </li>
+	          <li>
+	            <button
+	              type="button"
+	              class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+	              aria-controls="dropdown-sales"
+	              data-collapse-toggle="dropdown-sales"
+	            >
+	              	<svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+					  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 4h3a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3m0 3h6m-6 5h6m-6 4h6M10 3v4h4V3h-4Z"/>
+					</svg>
+	              <span class="flex-1 ml-3 text-left whitespace-nowrap"
+	                >Seminar</span
+	              >
+	              <svg
+	                aria-hidden="true"
+	                class="w-6 h-6"
+	                fill="currentColor"
+	                viewBox="0 0 20 20"
+	                xmlns="http://www.w3.org/2000/svg"
+	              >
+	                <path
+	                  fill-rule="evenodd"
+	                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+	                  clip-rule="evenodd"
+	                ></path>
+	              </svg>
+	            </button>
+	            <ul id="dropdown-sales" class="hidden py-2 space-y-2">
+	              <li>
+	                <a
+	                  href=" {{ route('admin.seminar') }} "
+	                  class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+	                  >Proposal</a
+	                >
+	              </li>
+	              <li>
+	                <a
+	                  href=" # "
+	                  class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+	                  >Hasil</a
+	                >
+	              </li>
+	            </ul>
+	          </li>
 	          <li class=" border-t border-gray-200 " >
 	            <a
 	              href=" {{ route('admin.appSettings') }} "

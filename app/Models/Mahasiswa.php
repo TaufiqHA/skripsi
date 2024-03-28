@@ -33,4 +33,14 @@ class Mahasiswa extends Model
     {
         return $this->hasOne(Pengajuan::class);
     }
+
+    // protected static function booted()
+    // {
+    //     static::deleted(function ($mahasiswa) {
+    //         $mahasiswa->user()->delete();
+    //         $mahasiswa->judul()->delete();
+    //         $mahasiswa->room()->delete();
+    //         $mahasiswa->pengajuan()->delete();
+    //     });
+    // }
 }
