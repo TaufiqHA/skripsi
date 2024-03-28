@@ -170,4 +170,9 @@ class AdminController extends Controller
         $pengajuan = Pengajuan::where('jenis', 'proposal')->paginate(10);
         return view('admin.seminar', ['title' => 'Seminar', 'pengajuan' => $pengajuan]);
     }
+
+    // public function downloadBerkas(Pengajuan $pengajuan)
+    // {
+    //     return response()->download('storage/' . $pengajuan->transkrip_nilai, 'transkrip nilai ' . $pengajuan->mahasiswa->nama . '.pdf');
+    // }
 }

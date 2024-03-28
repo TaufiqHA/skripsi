@@ -16,6 +16,7 @@ use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\sendMessageController;
 use App\Http\Controllers\AngkatanController;
 use App\Http\Controllers\SpreadsheetController;
+use App\Http\Controllers\ZipperController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
@@ -96,6 +97,7 @@ Route::middleware(['auth', 'checkrole:5'])->group(function () {
     Route::get('admin/editMahasiswa/{mahasiswa}', [AdminController::class, 'editMahasiswa'])->name('admin.editMahasiswa');
     Route::put('admin/updateMahasiswa/{mahasiswa}', [AdminController::class, 'updateMahasiswa'])->name('admin.updateMahasiswa');
     Route::get('admin/seminar', [AdminController::class, 'seminar'])->name('admin.seminar');
+    Route::get('admin/seminar/berkas/{pengajuan}', [ZipperController::class, 'downloadZip'])->name('admin.berkas.download');
 });
 
 Route::get('/forgot-password', function() {
