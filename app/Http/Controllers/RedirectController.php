@@ -8,16 +8,24 @@ class RedirectController extends Controller
 {
     public function check()
     {
-        if(auth()->user()->role_id === 1) {
-            return redirect('/mahasiswa');
-        } else if(auth()->user()->role_id === 2) {
-            return redirect('/dosen');
-        } else if(auth()->user()->role_id === 3) {
-            return redirect('/kajur');
-        } else if(auth()->user()->role_id === 4) {
-            return redirect('/sekjur');
-        } else {
-            return redirect('/admin');
+        $role = auth()->user()->role_id;
+
+        switch ($role) {
+            case '1':
+                return redirect('/mahasiswa');
+                break;
+            case '2':
+                return redirect('/dosen');
+                break;
+            case '3':
+                return redirect('/kajur');
+                break;
+            case '4':
+                return redirect('/sekjur');
+                break;
+            case '5':
+                return redirect('/admin');
+                break;
         }
     }
 }
