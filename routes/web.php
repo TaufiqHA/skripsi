@@ -98,6 +98,8 @@ Route::middleware(['auth', 'checkrole:5'])->group(function () {
     Route::put('admin/updateMahasiswa/{mahasiswa}', [AdminController::class, 'updateMahasiswa'])->name('admin.updateMahasiswa');
     Route::get('admin/seminar', [AdminController::class, 'seminar'])->name('admin.seminar');
     Route::get('admin/seminar/berkas/{pengajuan}', [ZipperController::class, 'downloadZip'])->name('admin.berkas.download');
+    Route::get('admin/seminar/search', [AdminController::class, 'searchSempro'])->name('admin.search.sempro');
+    Route::get('admin/sempro/filter', [AdminController::class, 'filterSempro'])->name('admin.filter.sempro');
 });
 
 Route::get('/forgot-password', function() {

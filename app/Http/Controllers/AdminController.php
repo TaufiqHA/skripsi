@@ -168,11 +168,42 @@ class AdminController extends Controller
     public function seminar()
     {
         $pengajuan = Pengajuan::where('jenis', 'proposal')->paginate(10);
-        return view('admin.seminar', ['title' => 'Seminar', 'pengajuan' => $pengajuan]);
+        $angkatan = Angkatan::all();
+        return view('admin.seminar', ['title' => 'Seminar', 'pengajuan' => $pengajuan, 'angkatan' => $angkatan]);
     }
 
     // public function downloadBerkas(Pengajuan $pengajuan)
     // {
     //     return response()->download('storage/' . $pengajuan->transkrip_nilai, 'transkrip nilai ' . $pengajuan->mahasiswa->nama . '.pdf');
     // }
+
+    public function searchSempro(Request $request)
+    {
+        if($request->has('search'))
+        {
+            $pengajuan = Pengajuan::where('jenis', 'proposal')->whereHas('mahasiswa', function ($query) use ($request) {
+                $query->where('nama', 'LIKE', '%' . $request->search . '%');
+            })->paginate(10);
+        } else {
+            $peganjuan = Pengajuan::all();
+        }
+
+        $angkatan = Angkatan::all();
+        return view('admin.seminar', ['title' => 'Seminar', 'pengajuan' => $pengajuan, 'angkatan' => $angkatan]);
+    }
+
+    public function filterSempro(Request $request)
+    {
+        if($request->has('filter'))
+        {
+            $pengajuan = Pengajuan::where('jenis', 'proposal')->whereHas('mahasiswa', function ($query) use ($request) {
+                $query->where('angkatan', 'LIKE', '%' . $request->filter . '%');
+            })->paginate(10);
+        } else {
+            $pengajuan = Pengajuan::where('jenis', 'proposal')->paginate(10);
+        }
+
+        $angkatan = Angkatan::all();
+        return view('admin.seminar', ['title' => 'Seminar', 'pengajuan' => $pengajuan, 'angkatan' => $angkatan]);
+    }
 }
