@@ -17,6 +17,7 @@ use App\Http\Controllers\sendMessageController;
 use App\Http\Controllers\AngkatanController;
 use App\Http\Controllers\SpreadsheetController;
 use App\Http\Controllers\ZipperController;
+use App\Http\Controllers\SeminarProposalController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
@@ -100,6 +101,7 @@ Route::middleware(['auth', 'checkrole:5'])->group(function () {
     Route::get('admin/seminar/berkas/{pengajuan}', [ZipperController::class, 'downloadZip'])->name('admin.berkas.download');
     Route::get('admin/seminar/search', [AdminController::class, 'searchSempro'])->name('admin.search.sempro');
     Route::get('admin/sempro/filter', [AdminController::class, 'filterSempro'])->name('admin.filter.sempro');
+    Route::post('admin/sempro/save', [SeminarProposalController::class, 'save'])->name('admin.sempro.save');
 });
 
 Route::get('/forgot-password', function() {

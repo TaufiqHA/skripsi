@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('tempat');
             $table->string('dosen_penguji1');
             $table->string('dosen_penguji2');
+            $table->string('sk_penguji');
             $table->timestamps();
         });
     }
