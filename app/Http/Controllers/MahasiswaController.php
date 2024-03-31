@@ -16,17 +16,29 @@ class MahasiswaController extends Controller
 {
     public function index()
     {
+
         $pesan = auth()->user()->mahasiswa->message;
         $revisi = auth()->user()->mahasiswa->room;
+
         $empty_pesan = true;
 
-        if(empty($pesan))
+        if(count($pesan) === 0)
         {
             $empty_pesan = false;
         } else {
             $empty_pesan = true;
         }
-        return view('mahasiswa.index', ['title' => 'Dashboard', 'pesan' => $pesan, 'emptyPesan' => $empty_pesan, 'revisi' => $revisi]);
+
+        $empty_revisi = false;
+
+        if(count($revisi) === 0)
+        {
+            $empty_revisi = true;
+        } else {
+            $empty_revisi = false;
+        }
+
+        return view('mahasiswa.index', ['title' => 'Dashboard', 'pesan' => $pesan, 'emptyPesan' => $empty_pesan, 'revisi' => $revisi, 'emptyRevisi' => $empty_revisi]);
     }
 
     public function showData(Mahasiswa $mahasiswa)

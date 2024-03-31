@@ -6,7 +6,7 @@
 		<div class="h-48 grid grid-cols-1 bg-gradient-to-tr from-pink-300 to-indigo-700 rounded-lg mb-4 p-4">
 			<div>
 				<p class="text-lg font-semibold text-gray-600">Welcome back,</p>
-				<h2 class="text-2xl font-bold dark:text-white">{{ auth()->user()->mahasiswa->nama }}</h2>
+				<h2 class="text-2xl font-bold dark:text-white">{{ auth()->user()->mahasiswa->nama ? auth()->user()->mahasiswa->nama : 'User' }}</h2>
 			</div>
 			<div class="grid grid-cols-4 gap-4 " >
 				<!--  -->
@@ -27,7 +27,7 @@
 			    </ul>
 			    <div id="defaultTabContent">
 			        <div class="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800" id="about" role="tabpanel" aria-labelledby="about-tab">
-			        	@if(empty($revisi))
+			        	@if($emptyRevisi)
 			        		<h2 class="text-md font-semibold text-center text-gray-400" >Tidak ada revisi</h2>
 			        	@else
 			        		<ol class="relative border-s border-gray-200 dark:border-gray-700">              
@@ -40,7 +40,7 @@
 			        	@endif 
 			        </div>
 			        <div class="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800" id="services" role="tabpanel" aria-labelledby="services-tab">
-			        	@if(empty($revisi))
+			        	@if($emptyRevisi)
 			        		<h2 class="text-md font-semibold text-center text-gray-400" >Tidak ada revisi</h2>
 			        	@else
 			        		<ol class="relative border-s border-gray-200 dark:border-gray-700">                  
