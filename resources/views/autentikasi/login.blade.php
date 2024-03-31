@@ -8,7 +8,7 @@
 </head>
 <body class="dark:bg-gray-900" >
 	<section class="bg-gray-50 dark:bg-gray-900">
-	  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
+	  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto h-dvh lg:py-0">
 		  	@if($errors->any())
 				<div id="alert-2" class="flex w-full max-w-md items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
 				  <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">

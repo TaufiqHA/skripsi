@@ -34,6 +34,11 @@ class Mahasiswa extends Model
         return $this->hasOne(Pengajuan::class);
     }
 
+    public function message()
+    {
+        return $this->hasMany(Message::class);
+    }
+
     // protected static function booted()
     // {
     //     static::deleted(function ($mahasiswa) {

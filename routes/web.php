@@ -18,6 +18,7 @@ use App\Http\Controllers\AngkatanController;
 use App\Http\Controllers\SpreadsheetController;
 use App\Http\Controllers\ZipperController;
 use App\Http\Controllers\SeminarProposalController;
+use App\Http\Controllers\MessageController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
@@ -48,6 +49,7 @@ Route::middleware(['auth', 'checkrole:1'])->group(function () {
     Route::get('mahasiswa/sempro/{mahasiswa}', [MahasiswaController::class, 'sempro'])->name('seminar.proposal');
     Route::get('mahasiswa/hasil/{mahasiswa}', [MahasiswaController::class, 'hasil'])->name('seminar.hasil');
     Route::post('seminar/create', [PengajuanController::class, 'create'])->name('seminar.create');
+    Route::put('mahasiswa/pesan/open/{message}', [MessageController::class, 'open'])->name('mahasiswa.pesan.open');
 });
 
 Route::middleware(['auth','checkrole:2'])->group(function () {
@@ -102,6 +104,7 @@ Route::middleware(['auth', 'checkrole:5'])->group(function () {
     Route::get('admin/seminar/search', [AdminController::class, 'searchSempro'])->name('admin.search.sempro');
     Route::get('admin/sempro/filter', [AdminController::class, 'filterSempro'])->name('admin.filter.sempro');
     Route::post('admin/sempro/save', [SeminarProposalController::class, 'save'])->name('admin.sempro.save');
+    Route::post('admin/pesan', [MessageController::class, 'create'])->name('admin.pesan');
 });
 
 Route::get('/forgot-password', function() {

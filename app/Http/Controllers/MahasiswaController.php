@@ -9,13 +9,24 @@ use App\Models\Jurusan;
 use App\Models\Dosen;
 use App\Models\Room;
 use App\Models\Judul;
+use App\Models\Message;
 use Illuminate\Support\Facades\Validator;
 
 class MahasiswaController extends Controller
 {
     public function index()
     {
-        return view('mahasiswa.index', ['title' => 'Dashboard' ]);
+        $pesan = auth()->user()->mahasiswa->message;
+        $revisi = auth()->user()->mahasiswa->room;
+        $empty_pesan = true;
+
+        if(empty($pesan))
+        {
+            $empty_pesan = false;
+        } else {
+            $empty_pesan = true;
+        }
+        return view('mahasiswa.index', ['title' => 'Dashboard', 'pesan' => $pesan, 'emptyPesan' => $empty_pesan, 'revisi' => $revisi]);
     }
 
     public function showData(Mahasiswa $mahasiswa)
