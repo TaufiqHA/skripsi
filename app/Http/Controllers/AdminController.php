@@ -11,6 +11,8 @@ use App\Models\Angkatan;
 use App\Models\Fakultas;
 use App\Models\Jurusan;
 use App\Models\Pengajuan;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\EventProposal;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -205,5 +207,12 @@ class AdminController extends Controller
 
         $angkatan = Angkatan::all();
         return view('admin.seminar', ['title' => 'Seminar', 'pengajuan' => $pengajuan, 'angkatan' => $angkatan]);
+    }
+
+    public function sendEmail()
+    {
+        Mail::to('htaufiq225@gmail.com')->send(new EventProposal());
+
+        dd('kirim email berhasil');
     }
 }

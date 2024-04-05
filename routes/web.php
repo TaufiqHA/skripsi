@@ -105,6 +105,7 @@ Route::middleware(['auth', 'checkrole:5'])->group(function () {
     Route::get('admin/sempro/filter', [AdminController::class, 'filterSempro'])->name('admin.filter.sempro');
     Route::post('admin/sempro/save', [SeminarProposalController::class, 'save'])->name('admin.sempro.save');
     Route::post('admin/pesan', [MessageController::class, 'create'])->name('admin.pesan');
+    Route::get('send/email', [AdminController::class, 'sendEmail'])->name('send.email');
 });
 
 Route::get('/forgot-password', function() {
