@@ -18,7 +18,7 @@ class EventProposal extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(protected $mahasiswa)
+    public function __construct(private $mahasiswa)
     {
         //
     }
@@ -29,7 +29,7 @@ class EventProposal extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Event Proposal',
+            subject: 'Seminar proposal',
         );
     }
 
@@ -56,8 +56,8 @@ class EventProposal extends Mailable
     {
         set_time_limit(180);
         return [
-            Attachment::fromPath(storage_path('app/public/file/1h2OotczoITmseyyvggb5zBacn1K49Xffpi6MLGM.pdf'))
-                ->as('testing.pdf')
+            Attachment::fromPath(storage_path('app/public/' . $this->mahasiswa->sempro->sk_penguji))
+                ->as('SK PENGUJI.pdf')
                 // ->withMime('application/pdf')
         ];
 

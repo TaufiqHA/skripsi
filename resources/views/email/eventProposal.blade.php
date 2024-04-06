@@ -6,9 +6,9 @@
 	<title>SITA | Email testing</title>
 </head>
 <body>
-	<h2>Coba email</h2>
-	<p>nama {{ $mahasiswa->nama }} </p>
-	<h2> {{ $sempro->tempat }} </h2>
-	<p>testing email</p>
+	<p>Tempat : {{ $sempro->tempat }} </p>
+	<p>Hari/Tanggal : {{ $sempro->tanggal }} </p>
+	<p>Penguji 1 : {{ $sempro->dosen_penguji1 }} </p>
+	<p>Penguji 2 : {{ $sempro->dosen_penguji2 }} </p>
 </body>
 </html>

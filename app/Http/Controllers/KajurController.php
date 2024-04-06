@@ -26,6 +26,11 @@ class KajurController extends Controller
         return view('kajur.judul', ['title' => 'Tugas Akhir', 'juduls' => $judul]);
     }
 
+    public function downloadBukti(Judul $judul)
+    {
+        return response()->download('storage/' . $judul->bukti, 'Bukti konsultasi ' . $judul->mahasiswa->nama . '.pdf');
+    }
+
     public function aprove(Judul $judul)
     {
         return view('kajur.aprove', ['title' => 'Tugas Akhir', 'judul' => $judul]); 

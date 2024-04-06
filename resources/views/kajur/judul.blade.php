@@ -185,6 +185,12 @@
 															                <input type="text" name="nama_dosen4" id="nama_dosen4" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value=" {{ $judul->dosen_pembimbing4->nama }} " placeholder="type here" readonly>
 															                <input type="hidden" name="" id="additionalInput3" value="{{ $judul->nama_dosen4 }}">
 															              </div>
+															              <div class="col-span-4" >
+															              	<div class="flex justify-between items-center mb-4 " >
+															              		<label for="nama_dosen4" class="block text-md font-medium text-gray-900 dark:text-white">Bukti Konsultasi</label>
+															              	</div>
+															              	<a href=" {{ route('kajur.download.bukti', ['judul' => $judul->id]) }} " class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Download</a>
+															              </div>
 															              <div>
 															              	<label for="dospem1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dosen pembimbing 1</label>
 																			<select id="dospem1" name="dospem1_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">

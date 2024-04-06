@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\File;
 use App\Models\SeminarProposal;
+use App\Models\Mahasiswa;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\EventProposal;
 
 class SeminarProposalController extends Controller
 {
@@ -36,6 +39,10 @@ class SeminarProposalController extends Controller
         $validated['sk_penguji'] = $validated['sk_penguji']->store('file');
 
         SeminarProposal::create($validated);
+
+        $mahasiswa = Mahasiswa::find($request->mahasiswa_id);
+
+        Mail::to($mahasiswa->user->email)->send(new EventProposal($mahasiswa));
 
         return back()->with('success', 'Berhasil menambahkan data');
     }

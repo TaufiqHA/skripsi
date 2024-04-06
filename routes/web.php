@@ -77,6 +77,7 @@ Route::middleware(['auth', 'checkrole:3'])->group(function () {
     Route::get('kajur/judul/status', [KajurController::class, 'statusFilter'])->name('judul.statusFilter');
     Route::get('kajur/mahasiswa/profile/{mahasiswa}', [KajurController::class, 'profileMahasiswa'])->name('mahasiswa.profile');
     Route::post('kajur/send', [sendMessageController::class, 'send'])->name('send.message');
+    Route::get('kajur/download/bukti/{judul}', [KajurController::class, 'downloadBukti'])->name('kajur.download.bukti');
 });
 
 Route::middleware(['auth', 'checkrole:5'])->group(function () {
@@ -105,7 +106,7 @@ Route::middleware(['auth', 'checkrole:5'])->group(function () {
     Route::get('admin/sempro/filter', [AdminController::class, 'filterSempro'])->name('admin.filter.sempro');
     Route::post('admin/sempro/save', [SeminarProposalController::class, 'save'])->name('admin.sempro.save');
     Route::post('admin/pesan', [MessageController::class, 'create'])->name('admin.pesan');
-    Route::get('send/email/{mahasiswa}', [AdminController::class, 'sendEmail'])->name('send.email');
+    // Route::get('send/email/{mahasiswa}', [AdminController::class, 'sendEmail'])->name('send.email');
 });
 
 Route::get('/forgot-password', function() {

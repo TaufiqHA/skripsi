@@ -209,10 +209,10 @@ class AdminController extends Controller
         return view('admin.seminar', ['title' => 'Seminar', 'pengajuan' => $pengajuan, 'angkatan' => $angkatan]);
     }
 
-    public function sendEmail(Mahasiswa $mahasiswa)
-    {
-        Mail::to('htaufiq225@gmail.com')->send(new EventProposal($mahasiswa));
+    // public function sendEmail(Mahasiswa $mahasiswa)
+    // {
+    //     Mail::to($mahasiswa->user->email)->send(new EventProposal($mahasiswa));
 
-        dd('kirim email berhasil');
-    }
+    //     return back()->with('success', 'Berhasil mengirim email');
+    // }
 }
