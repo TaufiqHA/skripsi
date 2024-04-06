@@ -39,6 +39,11 @@ class Mahasiswa extends Model
         return $this->hasMany(Message::class);
     }
 
+    public function sempro()
+    {
+        return $this->hasOne(SeminarProposal::class);
+    }
+
     // protected static function booted()
     // {
     //     static::deleted(function ($mahasiswa) {

@@ -18,7 +18,7 @@ class EventProposal extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public $mahasiswa)
+    public function __construct(protected $mahasiswa)
     {
         //
     }
@@ -40,6 +40,10 @@ class EventProposal extends Mailable
     {
         return new Content(
             view: 'email.eventProposal',
+            with: [
+                'mahasiswa' => $this->mahasiswa,
+                'sempro' => $this->mahasiswa->sempro,
+            ]
         );
     }
 

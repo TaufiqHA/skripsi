@@ -8,6 +8,7 @@
 <body>
 	<h2>Coba email</h2>
 	<p>nama {{ $mahasiswa->nama }} </p>
+	<h2> {{ $sempro->tempat }} </h2>
 	<p>testing email</p>
 </body>
 </html>
