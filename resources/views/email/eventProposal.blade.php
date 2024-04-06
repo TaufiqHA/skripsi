@@ -7,6 +7,7 @@
 </head>
 <body>
 	<h2>Coba email</h2>
+	<p>nama {{ $mahasiswa->nama }} </p>
 	<p>testing email</p>
 </body>
 </html>

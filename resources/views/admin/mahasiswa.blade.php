@@ -134,7 +134,7 @@
 			                                            <a href=" {{ route('admin.editMahasiswa', ['mahasiswa' => $item->id]) }} " class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
 			                                        </li>
 			                                        <li>
-			                                            <a href=" {{ route('send.email') }} " class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Kirim email</a>
+			                                            <a href=" {{ route('send.email', ['mahasiswa' => $item->id]) }} " class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Kirim email</a>
 			                                        </li>
 			                                    </ul>
 			                                    <!-- <div class="py-1">
