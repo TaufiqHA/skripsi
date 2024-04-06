@@ -35,7 +35,17 @@ class MahasiswaController extends Controller
         {
             $empty_revisi = true;
         } else {
-            $empty_revisi = false;
+            foreach($revisi as $room)
+            {
+                if(count($room->revisi) === 0)
+                {
+                    $empty_revisi = true;
+                    break;
+                } else {
+                    $empty_revisi = false;
+                    break;
+                }
+            }
         }
 
         return view('mahasiswa.index', ['title' => 'Dashboard', 'pesan' => $pesan, 'emptyPesan' => $empty_pesan, 'revisi' => $revisi, 'emptyRevisi' => $empty_revisi]);
